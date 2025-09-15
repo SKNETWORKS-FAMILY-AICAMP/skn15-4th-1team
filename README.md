@@ -8,6 +8,9 @@
 ## 🖐️ 프로젝트 소개
 ## ❤️ 기대효과
 ## 👤 대상 사용자
+## ERD 구성
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/f2a63960-e52a-4ab3-8a43-d70fcb09faf1" />
+
 # 4. 기술 스택
 # 5. 수행결과
 # 6. 한 줄 회고
