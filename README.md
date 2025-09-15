@@ -7,10 +7,95 @@
 
 
 ## 📕 프로젝트명
+# 📚 Lecture-RAG: 4차 프로젝트 (서버 분산 구조)
+
+강의록 기반 질의응답 시스템을 Docker와 Django REST API로 구현한 분산 애플리케이션입니다.
+
 ## ✅ 프로젝트 배경 및 목적
+
+### 문제 상황
+- **기존 문제**: 대용량 강의 자료에서 원하는 정보를 찾기 어려움
+- **학습자 어려움**: 수백 페이지의 강의록에서 특정 내용 검색 시간 소요
+- **교육자 부담**: 반복적인 질문에 대한 개별 답변 제공의 한계
+- **정보 분산**: 여러 파일에 흩어진 관련 정보를 종합하기 어려움
+
+### 해결 목표
+🎯 **AI 기반 스마트 학습 도우미 구축**
+- RAG(Retrieval-Augmented Generation) 기술로 정확한 답변 제공
+- 실시간 질의응답으로 학습 효율성 극대화
+- 근거 자료 제시로 신뢰성 있는 정보 전달
+- 확장 가능한 서버 아키텍처로 다중 사용자 지원
+
 ## 🖐️ 프로젝트 소개
+
+**Lecture-RAG**는 대학 강의록과 교육 자료를 AI가 이해할 수 있는 형태로 변환하여, 학습자가 자연어로 질문하면 관련 내용을 찾아 정확한 답변을 제공하는 지능형 교육 지원 시스템입니다.
+
+### 🔑 핵심 기능
+1. **📄 스마트 문서 인덱싱**: 강의록을 AI가 검색 가능한 벡터 형태로 변환
+2. **🤖 실시간 AI 대화**: GPT-4 기반 자연어 질의응답
+3. **📊 근거 자료 제시**: 답변에 사용된 원문 스니펫 표시
+4. **💾 대화 이력 관리**: 모든 질의응답 기록 저장 및 조회
+5. **🎛️ 맞춤형 설정**: 모델 선택, 검색 깊이 등 개인화 옵션
+
+### 🚀 기술적 특징
+- **마이크로서비스 아키텍처**: Frontend, Backend, Database 분리
+- **RESTful API**: 표준화된 HTTP API로 확장성 보장
+- **벡터 검색**: FAISS 기반 고속 의미 검색
+- **실시간 응답**: 최적화된 검색 및 생성 파이프라인
+- **컨테이너화**: Docker 기반 손쉬운 배포 및 확장
+
 ## ❤️ 기대효과
+
+### 🎓 학습자 관점
+- **⏰ 학습 시간 단축**: 필요한 정보를 즉시 찾아 학습 효율성 3배 향상
+- **🎯 정확한 정보 획득**: AI가 검증된 강의 자료에서만 답변 추출
+- **🔄 반복 학습 지원**: 언제든 질문하고 복습할 수 있는 24/7 AI 튜터
+- **📈 이해도 증진**: 단순 검색이 아닌 맥락적 설명으로 깊이 있는 학습
+
+### 👨‍🏫 교육자 관점
+- **📉 반복 질문 감소**: 일반적인 질문을 AI가 대신 처리
+- **📊 학습 패턴 분석**: 학생들의 질문 데이터로 교육과정 개선 인사이트
+- **⚡ 즉시 피드백**: 학생이 실시간으로 궁금증 해결
+- **📚 교육 자료 활용도 증대**: 기존 강의록의 재사용성 극대화
+
+### 🏢 교육기관 관점
+- **💰 운영비용 절감**: TA(Teaching Assistant) 인력 절약
+- **📈 교육 품질 향상**: 일관되고 정확한 정보 제공
+- **🔄 확장성**: 여러 과목, 다수 학생 동시 지원
+- **📱 접근성**: 웹 기반으로 언제 어디서나 접근 가능
+
 ## 👤 대상 사용자
+
+### 🎯 1차 대상 (Primary Users)
+| 사용자 그룹 | 사용 목적 | 주요 니즈 |
+|------------|----------|----------|
+| **대학생** | 강의 복습, 과제 수행 | 빠른 정보 검색, 이해도 확인 |
+| **대학원생** | 연구 자료 탐색 | 심화 내용 질의, 참고 문헌 확인 |
+| **교수/강사** | 학생 질문 대응 지원 | 효율적 교육 지원, 질문 패턴 분석 |
+
+### 🎯 2차 대상 (Secondary Users)
+| 사용자 그룹 | 활용 시나리오 | 기대 효과 |
+|------------|-------------|----------|
+| **기업 교육팀** | 사내 교육 자료 활용 | 교육 효율성 증대 |
+| **온라인 강의 플랫폼** | 수강생 학습 지원 | 완주율 증가, 만족도 향상 |
+| **도서관/학습센터** | 자료 검색 서비스 | 이용자 편의성 증대 |
+
+### 👥 사용자 페르소나
+
+#### 📚 "효율적인 학습자" - 김대학 (22세, 컴퓨터공학과 3학년)
+- **상황**: 중간고사 준비로 200페이지 강의록 복습 필요
+- **니즈**: "딥러닝에서 backpropagation이 어떻게 작동하는지 쉽게 설명해줘"
+- **사용 패턴**: 개념 질문 → 예제 요청 → 연관 개념 탐색
+
+#### 🔬 "깊이 있는 연구자" - 박석사 (26세, 인공지능 전공 대학원생)
+- **상황**: 논문 작성을 위한 선행 연구 분석
+- **니즈**: "transformer 아키텍처의 attention mechanism 수식과 구현 방법"
+- **사용 패턴**: 심화 질문 → 수식/코드 확인 → 참고 자료 수집
+
+#### 👨‍🏫 "혁신적인 교육자" - 이교수 (45세, 데이터사이언스과 교수)
+- **상황**: 400명 대형 강의에서 개별 질문 대응 어려움
+- **니즈**: 학생들이 자주 묻는 질문 패턴 파악 및 자동 응답
+- **사용 패턴**: 질문 통계 확인 → 강의 개선점 도출 → 추가 자료 제공
 
 ## 🏗️ 3차 → 4차 프로젝트 주요 변경사항
 
@@ -30,7 +115,8 @@
 ## 개념도
 
 <img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/f9be3b91-21ca-4f21-ac01-9adbdadd5944" />
-# 📚 Lecture-RAG: 4차 프로젝트 (서버 분산 구조)
+
+# 
 
 강의록 기반 질의응답 시스템을 Docker와 Django REST API로 구현한 분산 애플리케이션입니다.
 
@@ -369,42 +455,21 @@ docker-compose up -d
 - [ ] 문서 인덱싱 테스트
 - [ ] 질의응답 테스트
 
-
-
-## 🤝 기여 방법
-
-1. 이슈 생성 또는 기존 이슈 확인
-2. 브랜치 생성: `git checkout -b feature/새기능`
-3. 변경사항 커밋: `git commit -m '새 기능 추가'`
-4. 브랜치 푸시: `git push origin feature/새기능`
-5. Pull Request 생성
-
 ---
 
 
 # 4. 기술 스택
-### Backend (Django)
-- **Framework**: Django 4.2+ with Django REST Framework
-- **Database**: PostgreSQL (Docker 컨테이너)
-- **Web Server**: Gunicorn (Production)
-- **API**: RESTful API with JSON responses
-- **CORS**: django-cors-headers
 
-### Frontend (Streamlit)
-- **Framework**: Streamlit 1.28+
-- **HTTP Client**: requests library
-- **UI**: Custom CSS styling, responsive design
-
-### AI/ML Components
-- **Vector Store**: FAISS (Facebook AI Similarity Search)
-- **Embeddings**: sentence-transformers
-- **LLM**: OpenAI GPT-4o-mini (기본), 다중 모델 지원
-- **Text Processing**: langchain, langchain-openai
-
-### Infrastructure
-- **Containerization**: Docker & Docker Compose
-- **Database**: PostgreSQL 13+
-- **Deployment**: AWS EC2, Docker containers
-- **Process Management**: Gunicorn with multiple workers
+| 분야 (Category) | 기술 스택 (Technology) | 세부 내용 (Details) |
+| :--- | :--- | :--- |
+| **Backend** | ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white) <br/> ![Django REST Framework](https://img.shields.io/badge/Django_REST_Framework-A30000?style=for-the-badge&logo=django&logoColor=white) | Django 4.2+ 버전 및 DRF를 사용한 프레임워크 구성 |
+| | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white) | Docker 컨테이너 기반 데이터베이스 |
+| | ![Gunicorn](https://img.shields.io/badge/Gunicorn-499848?style=for-the-badge&logo=gunicorn&logoColor=white) | Production 환경용 웹 서버 |
+| **Frontend** | ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white) <br/> ![Python](https://img.shields.io/badge/Requests-2F855A?style=for-the-badge&logo=python&logoColor=white) | Streamlit 1.28+ 기반 프레임워크 및 `requests` 라이브러리 |
+| | ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) | 반응형 디자인을 위한 Custom CSS 스타일링 |
+| **AI/ML** | ![Facebook](https://img.shields.io/badge/FAISS-4A90E2?style=for-the-badge&logo=facebook&logoColor=white) <br/> ![Python](https://img.shields.io/badge/Sentence_Transformers-3776AB?style=for-the-badge&logo=python&logoColor=white) | FAISS 벡터 저장소 및 임베딩 모델 |
+| | ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white) <br/> ![LangChain](https://img.shields.io/badge/LangChain-019934?style=for-the-badge&logo=langchain&logoColor=white) | OpenAI GPT-4o-mini 기반 다중 LLM 지원 및 LangChain 활용 |
+| **Infrastructure** | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white) <br/> ![Docker Compose](https://img.shields.io/badge/Docker_Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white) | Docker & Docker Compose를 이용한 컨테이너화 |
+| | ![Amazon AWS](https://img.shields.io/badge/AWS_EC2-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white) | AWS EC2 기반 Docker 컨테이너 배포 |
 # 5. 수행결과
 # 6. 한 줄 회고
