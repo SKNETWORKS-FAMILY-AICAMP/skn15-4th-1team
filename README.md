@@ -1,55 +1,108 @@
-# 🎓 Lecture-RAG: 강의록 기반 RAG 챗봇 시스템
+# 🎓 skn15-4th-1team
+
+# 📋 목차
+- [1. 팀 소개](#1-팀-소개)
+- [2. 프로젝트 기간](#2-프로젝트-기간)
+- [3. 프로젝트 개요](#3-프로젝트-개요)
+  - [3.1 프로젝트명](#31-프로젝트명)
+  - [3.2 프로젝트 배경 및 목적](#32-프로젝트-배경-및-목적)
+  - [3.3 프로젝트 소개](#33-프로젝트-소개)
+  - [3.4 기대효과](#34-기대효과)
+  - [3.5 대상 사용자](#35-대상-사용자)
+  - [3.6 프로젝트 폴더 구조](#36-프로젝트-폴더-구조)
+  - [3.7 모듈 및 함수 별 기능](#37-모듈-및-함수-별-기능)
+  - [3.8 시스템 아키텍처](#38-시스템-아키텍처)
+  - [3.9 전체 파이프라인](#39-전체-파이프라인)
+  - [3.10 단계별 입·출력](#310-단계별-입출력)
+  - [3.11 프롬프트](#311-프롬프트)
+  - [3.12 데이터 전처리](#312-데이터-전처리)
+  - [3.13 환경설정](#313-환경설정)
+- [4. 기술스택](#4-기술스택)
+- [5. 수행결과](#5-수행결과)
+
+# 1. 팀 소개
+
+| 이름 | 역할 | 담당 업무 |
+|------|------|----------|
+| **팀원1** | 팀장/백엔드 | Django REST API 개발, RAG 엔진 구현 |
+| **팀원2** | 프론트엔드 | Streamlit UI 개발, UX 디자인 |
+| **팀원3** | 인프라/DevOps | Docker 컨테이너화, AWS 배포 |
+| **팀원4** | AI/ML | 벡터 스토어 최적화, 프롬프트 엔지니어링 |
+
+# 2. 프로젝트 기간
+
+**📅 전체 개발 기간**: 2024.09.15 ~ 2024.09.16 (2일)
+
+# 3. 프로젝트 개요
+
+## 3.1 📋 프로젝트명
+
+**Lecture-RAG: 강의록 기반 RAG 챗봇 시스템**
 
 > 대규모 강의 환경에서 교수와 학생 간의 효율적인 소통을 지원하는 AI 기반 질의응답 시스템
 
-## 📋 목차
+## 3.2 🎯 프로젝트 배경 및 목적
 
-- [프로젝트 개요](#-프로젝트-개요)
-- [대상 사용자 페르소나](#-대상-사용자-페르소나)
-- [시스템 아키텍처](#-시스템-아키텍처)
-- [기술 스택](#-기술-스택)
-- [디렉토리 구조](#-디렉토리-구조)
-- [설치 및 실행](#-설치-및-실행)
-- [API 문서](#-api-문서)
-- [통신 플로우](#-통신-플로우)
-- [RAG 파이프라인](#-rag-파이프라인)
-- [모니터링 및 로깅](#-모니터링-및-로깅)
-- [배포 가이드](#-배포-가이드)
-- [트러블슈팅](#-트러블슈팅)
+### 배경
+- **대규모 강의 관리의 어려움**: 300명 이상의 학생들의 질문에 일일이 대응하기 어려움
+- **반복 질문 처리 부담**: 동일한 질문의 반복으로 인한 교수 업무 과부하
+- **시간 제약**: 오피스 아워 외 시간에는 질문 대응 불가
+- **강의 개선 필요성**: 학생들의 질문 패턴 분석을 통한 강의 품질 향상 요구
 
-# 1. 팀 소개 
-# 팀명 : 웅이와 아이들
+### 목적
+- **24/7 자동 질의응답 시스템 구축**: 시간 제약 없는 학습 지원
+- **강의록 기반 정확한 답변 제공**: RAG 기술을 활용한 신뢰성 있는 정보 제공
+- **질문 데이터 수집 및 분석**: 교수의 강의 개선을 위한 인사이트 제공
+- **확장 가능한 클라우드 아키텍처**: AWS 기반 마이크로서비스 구조
 
+## 3.3 🚀 프로젝트 소개
 
-
-
-| **조태민** | **박진우** | **서혜선** | **임가은** | **임경원** | **홍민식** |
-|:---:|:---:|:---:|:---:|:---:|:---:|
-| <img width="110" height="120" alt="Image" src="https://github.com/user-attachments/assets/f4e37d90-54e7-412f-9eb0-6c94ffd08170" /> | <img width="110" height="120" alt="Image" src="https://github.com/user-attachments/assets/6ec5c5be-b7dc-4b77-84f8-73eae0735138" /> | <img width="110" height="120" alt="Image" src="https://github.com/user-attachments/assets/98f8c5b4-eaf1-44f1-ac6f-c90be49f40fb" /> | <img width="110" height="120" alt="Image" src="https://github.com/user-attachments/assets/48f3f3e0-5118-4c93-b7c1-4302fd0c6803" /> | <img width="110" height="120" alt="Image" src="https://github.com/user-attachments/assets/b5ad3ea4-cdde-4ad8-bde3-8237cdd6cae0" /> | <img width="110" height="120" alt="Image" src="https://github.com/user-attachments/assets/84179981-6f18-4ad5-adab-9a7216a254c5" /> |
-| [@o2mandoo](https://github.com/o2mandoo) | [@pjw876](https://github.com/pjw876) | [@hyeseon](https://github.com/hyeseon7135) | [@mars7421](https://github.com/mars7421) | [@KYUNGWON-99](https://github.com/KYUNGWON-99) | [@minnnsik](https://github.com/minnnsik) |
-
-
-## 🎯 프로젝트 개요
-
-Lecture-RAG는 **Retrieval-Augmented Generation (RAG)** 기술을 활용한 강의록 기반 질의응답 시스템입니다.
+Lecture-RAG는 **Retrieval-Augmented Generation (RAG)** 기술을 활용하여 강의록을 기반으로 한 지능형 질의응답 시스템입니다. 3차 프로젝트에서 Streamlit 기반의 단일 애플리케이션으로 구현했던 시스템을 4차 프로젝트에서는 **마이크로서비스 아키텍처**로 확장하여 프론트엔드, 백엔드, 데이터베이스를 분리하고 AWS 클라우드 환경에서 운영할 수 있도록 발전시켰습니다.
 
 ### 🚀 주요 기능
 
-- **📚 강의록 자동 인덱싱**: 다양한 형식의 강의 문서를 벡터 데이터베이스에 자동 저장
-- **🤖 지능형 질의응답**: 강의 내용 기반의 정확하고 맥락적인 답변 제공
-- **💬 채팅 인터페이스**: 직관적인 Streamlit 기반 웹 채팅 UI
-- **📊 질문 데이터 수집**: 학생 질문 패턴 분석을 통한 강의 개선 인사이트
-- **🔍 근거 스니펫 제공**: 답변의 출처가 되는 강의록 부분 명시
-- **⚡ 실시간 응답**: 빠른 검색과 생성을 통한 즉시 답변
+| 기능 | 설명 | 기술 구현 |
+|------|------|----------|
+| **📚 강의록 자동 인덱싱** | 다양한 형식의 강의 문서를 벡터 데이터베이스에 자동 저장 | FAISS + OpenAI Embeddings |
+| **🤖 지능형 질의응답** | 강의 내용 기반의 정확하고 맥락적인 답변 제공 | GPT-4o-mini + RAG Pipeline |
+| **💬 채팅 인터페이스** | 직관적인 웹 기반 채팅 UI | Streamlit + Custom CSS |
+| **📊 질문 데이터 수집** | 학생 질문 패턴 분석을 통한 강의 개선 인사이트 | PostgreSQL + Django ORM |
+| **🔍 근거 스니펫 제공** | 답변의 출처가 되는 강의록 부분 명시 | Document Metadata + Chunking |
+| **⚡ 실시간 응답** | 빠른 검색과 생성을 통한 즉시 답변 | Async Processing + Caching |
+| **🌐 클라우드 배포** | AWS 기반 확장 가능한 마이크로서비스 | Docker + EC2 + Load Balancer |
 
-### 🎯 해결하는 문제
+### 🎯 3차 vs 4차 프로젝트 비교
 
-1. **대규모 강의 관리**: 수백 명의 학생 질문에 일일이 대응하기 어려운 문제
-2. **반복 질문 처리**: 동일한 질문의 반복으로 인한 교수 업무 부담
-3. **강의 개선**: 학생들의 질문 패턴 분석을 통한 강의 품질 향상
-4. **24/7 지원**: 시간 제약 없는 학습 지원 서비스
+| 구분 | 3차 프로젝트 | 4차 프로젝트 |
+|------|-------------|-------------|
+| **아키텍처** | 단일 Streamlit 애플리케이션 | 마이크로서비스 (Frontend/Backend/DB 분리) |
+| **배포 환경** | 로컬 환경 | AWS 클라우드 환경 |
+| **데이터베이스** | 파일 기반 저장 | PostgreSQL |
+| **API** | 내부 함수 호출 | RESTful API |
+| **확장성** | 단일 서버 | 다중 인스턴스 가능 |
+| **모니터링** | 로컬 로그 | Docker 로그 + 헬스체크 |
 
-## 👥 대상 사용자 페르소나
+## 3.4 🎁 기대효과
+
+### 교수님 관점
+- ⚡ **업무 효율성 향상**: 반복 질문 자동 처리로 연구 시간 40% 증가
+- 📊 **데이터 기반 강의 개선**: 질문 패턴 분석으로 강의 취약점 파악
+- 🕒 **24시간 학습 지원**: 시간 제약 없는 학생 질의응답 서비스
+- 📈 **강의 품질 향상**: 실시간 학생 이해도 모니터링
+
+### 학생 관점
+- 🎯 **즉시 답변 획득**: 궁금한 점을 바로 해결하여 학습 효율성 증대
+- 📖 **근거 기반 학습**: 답변 출처 제공으로 신뢰성 있는 정보 습득
+- 💪 **자기주도 학습**: 시간과 장소에 구애받지 않는 학습 환경
+- 🔍 **강의록 빠른 검색**: 방대한 강의 자료에서 필요한 정보 즉시 탐색
+
+### 시스템 관점
+- 📊 **질문 데이터 축적**: 교육 개선을 위한 빅데이터 구축
+- 🚀 **확장 가능성**: 다른 과목 및 대학으로 시스템 확장 가능
+- 💰 **비용 효율성**: 자동화를 통한 교육 운영 비용 절감
+- 🔧 **지속적 개선**: AI 모델 업데이트를 통한 답변 품질 향상
+
+## 3.5 👥 대상 사용자
 
 ### 🧑‍🏫 주 사용자: 데이터 사이언스 학과 교수
 
@@ -83,7 +136,110 @@ Lecture-RAG는 **Retrieval-Augmented Generation (RAG)** 기술을 활용한 강�
 - 📝 **학습 지원**: 복습 및 과제 수행 시 즉시 도움
 - 📖 **근거 제공**: 답변의 출처가 되는 강의록 페이지 명시
 
-## 🏗️ 시스템 아키텍처
+## 3.6 📁 프로젝트 폴더 구조
+
+```
+skn15-4th-1team/
+├── 🐳 docker-compose.yml          # 전체 서비스 오케스트레이션
+├── 🚀 deploy.sh                   # AWS 배포 자동화 스크립트
+├── 🌐 nginx.conf                  # Nginx 리버스 프록시 설정
+│
+├── 📱 frontend/                   # Streamlit 프론트엔드
+│   ├── app.py                     # 메인 Streamlit 애플리케이션
+│   ├── api_client.py              # Backend API 클라이언트
+│   ├── requirements.txt           # 프론트엔드 의존성
+│   └── 🐳 Dockerfile.frontend    # 프론트엔드 컨테이너 이미지
+│
+├── ⚙️ backend/                   # Django REST API 백엔드
+│   ├── backend/                   # Django 프로젝트 설정
+│   │   ├── settings.py            # Django 설정 (DB, CORS, RAG)
+│   │   ├── urls.py                # URL 라우팅
+│   │   └── wsgi.py                # WSGI 애플리케이션
+│   ├── rag_api/                   # RAG API 앱
+│   │   ├── models.py              # 데이터 모델 (Document, ChatSession, ChatMessage)
+│   │   ├── views.py               # API 뷰 (인덱싱, 채팅, 검색)
+│   │   ├── serializers.py         # API 시리얼라이저
+│   │   ├── urls.py                # API 엔드포인트
+│   │   └── apps.py                # 앱 설정
+│   ├── manage.py                  # Django 관리 도구
+│   ├── requirements.txt           # 백엔드 의존성
+│   └── 🐳 Dockerfile.backend     # 백엔드 컨테이너 이미지
+│
+├── 🗄️ database/                  # PostgreSQL 데이터베이스
+│   ├── init.sql                   # 데이터베이스 초기화 스크립트
+│   └── 🐳 Dockerfile.database    # 데이터베이스 컨테이너 이미지
+│
+├── 🤖 lecture_rag/               # 핵심 RAG 엔진
+│   ├── config.py                  # RAG 설정 관리
+│   ├── vector_store.py            # FAISS 벡터 스토어 관리
+│   ├── document_processor.py      # 문서 처리 및 청킹
+│   ├── llm_handler.py             # LLM 모델 관리
+│   ├── utils.py                   # 유틸리티 함수
+│   ├── langgraph_flow.py          # RAG 플로우 시각화
+│   ├── google_drive.py            # Google Drive 연동
+│   ├── main.py                    # RAG 엔진 진입점
+│   └── app.py                     # 독립 실행용 Streamlit 앱
+│
+├── 🐳 Dockerfile.nginx           # Nginx 컨테이너 이미지
+├── 📋 requirements.txt           # 전체 프로젝트 의존성
+└── 📖 README.md                  # 프로젝트 문서
+```
+
+## 3.7 🔧 모듈 및 함수 별 기능
+
+### Frontend Layer (Streamlit)
+
+| 파일 | 클래스/함수 | 기능 설명 |
+|------|-------------|----------|
+| **app.py** | `LectureRAGApp` | 메인 애플리케이션 클래스 |
+| | `_setup_page()` | 페이지 설정 및 CSS 스타일링 |
+| | `_render_chat_interface()` | 채팅 인터페이스 렌더링 |
+| | `_handle_chat_qa()` | 질의응답 처리 로직 |
+| | `_render_detailed_view()` | 상세 답변 및 근거 스니펫 표시 |
+| **api_client.py** | `APIClient` | Backend API 통신 클라이언트 |
+| | `chat()` | 채팅 API 호출 |
+| | `index_document()` | 문서 인덱싱 API 호출 |
+| | `health_check()` | 헬스체크 API 호출 |
+
+### Backend Layer (Django)
+
+| 파일 | 클래스/함수 | 기능 설명 |
+|------|-------------|----------|
+| **models.py** | `Document` | 문서 메타데이터 모델 |
+| | `ChatSession` | 채팅 세션 모델 |
+| | `ChatMessage` | 채팅 메시지 모델 |
+| **views.py** | `IndexDocumentView` | 문서 인덱싱 API 뷰 |
+| | `ChatView` | 질의응답 API 뷰 |
+| | `SearchView` | 문서 검색 API 뷰 |
+| | `HealthCheckView` | 시스템 상태 확인 API |
+| **serializers.py** | `ChatRequestSerializer` | 채팅 요청 데이터 검증 |
+| | `IndexDocumentRequestSerializer` | 인덱싱 요청 데이터 검증 |
+
+### RAG Engine Layer
+
+| 파일 | 클래스/함수 | 기능 설명 |
+|------|-------------|----------|
+| **vector_store.py** | `VectorStore` | FAISS 벡터 스토어 관리 |
+| | `index_document()` | 문서 임베딩 및 인덱싱 |
+| | `search()` | 유사도 검색 수행 |
+| **document_processor.py** | `DocumentProcessor` | 문서 처리 및 청킹 |
+| | `chunk_documents()` | 문서를 청크 단위로 분할 |
+| **llm_handler.py** | `LLMHandler` | LLM 모델 관리 |
+| | `generate_answer()` | AI 답변 생성 |
+| | `_check_unknown_tokens()` | 미허용 토큰 검사 |
+| **utils.py** | `extract_allowed_tokens()` | 허용 토큰 추출 |
+| | `read_text()` | 텍스트 파일 읽기 |
+
+### Infrastructure Layer
+
+| 파일 | 기능 설명 |
+|------|----------|
+| **docker-compose.yml** | 전체 서비스 오케스트레이션 |
+| **nginx.conf** | 리버스 프록시 설정 |
+| **deploy.sh** | AWS 배포 자동화 스크립트 |
+| **Dockerfile.*** | 각 서비스별 컨테이너 이미지 정의 |
+
+## 3.8 🏗️ 시스템 아키텍처
 
 ```mermaid
 graph TB
@@ -148,414 +304,7 @@ graph TB
 | 4 | **Database** | 5432 | 세션, 채팅 기록, 문서 메타데이터 저장 |
 | 5 | **Vector Store** | - | 문서 임베딩 및 유사도 검색 |
 
-## 🛠️ 기술 스택
-
-### Backend (Django)
-```yaml
-Framework: Django 4.2+ with Django REST Framework
-Database: PostgreSQL 13+
-Vector Store: FAISS (Facebook AI Similarity Search)
-Embeddings: OpenAI text-embedding-3-small / HuggingFace Transformers
-LLM: OpenAI GPT-4o-mini, GPT-3.5-turbo
-WSGI Server: Gunicorn
-```
-
-### Frontend (Streamlit)
-```yaml
-Framework: Streamlit 1.28+
-HTTP Client: Requests
-State Management: Streamlit Session State
-UI Components: Custom CSS + Streamlit Widgets
-```
-
-### Infrastructure
-```yaml
-Containerization: Docker & Docker Compose
-Reverse Proxy: Nginx
-Database: PostgreSQL
-Networking: Docker Bridge Network
-Storage: Named Volumes for persistence
-```
-
-### AI/ML Stack
-```yaml
-Embeddings: OpenAI text-embedding-3-small
-LLM: OpenAI GPT Series
-Vector Search: FAISS CPU
-Document Processing: LangChain
-Chunking Strategy: Recursive Character Text Splitter
-```
-
-## 📁 디렉토리 구조
-
-```
-skn15-4th-1team/
-├── 🐳 docker-compose.yml          # 전체 서비스 오케스트레이션
-├── 🚀 deploy.sh                   # AWS 배포 자동화 스크립트
-├── 🌐 nginx.conf                  # Nginx 리버스 프록시 설정
-│
-├── 📱 frontend/                   # Streamlit 프론트엔드
-│   ├── app.py                     # 메인 Streamlit 애플리케이션
-│   ├── api_client.py              # Backend API 클라이언트
-│   ├── requirements.txt           # 프론트엔드 의존성
-│   └── 🐳 Dockerfile.frontend    # 프론트엔드 컨테이너 이미지
-│
-├── ⚙️ backend/                   # Django REST API 백엔드
-│   ├── backend/                   # Django 프로젝트 설정
-│   │   ├── settings.py            # Django 설정 (DB, CORS, RAG)
-│   │   ├── urls.py                # URL 라우팅
-│   │   └── wsgi.py                # WSGI 애플리케이션
-│   ├── rag_api/                   # RAG API 앱
-│   │   ├── models.py              # 데이터 모델 (Document, ChatSession, ChatMessage)
-│   │   ├── views.py               # API 뷰 (인덱싱, 채팅, 검색)
-│   │   ├── serializers.py         # API 시리얼라이저
-│   │   ├── urls.py                # API 엔드포인트
-│   │   └── apps.py                # 앱 설정
-│   ├── manage.py                  # Django 관리 도구
-│   ├── requirements.txt           # 백엔드 의존성
-│   └── 🐳 Dockerfile.backend     # 백엔드 컨테이너 이미지
-│
-├── 🗄️ database/                  # PostgreSQL 데이터베이스
-│   ├── init.sql                   # 데이터베이스 초기화 스크립트
-│   └── 🐳 Dockerfile.database    # 데이터베이스 컨테이너 이미지
-│
-├── 🤖 lecture_rag/               # 핵심 RAG 엔진
-│   ├── config.py                  # RAG 설정 관리
-│   ├── vector_store.py            # FAISS 벡터 스토어 관리
-│   ├── document_processor.py      # 문서 처리 및 청킹
-│   ├── llm_handler.py             # LLM 모델 관리
-│   ├── utils.py                   # 유틸리티 함수
-│   ├── langgraph_flow.py          # RAG 플로우 시각화
-│   ├── google_drive.py            # Google Drive 연동
-│   ├── main.py                    # RAG 엔진 진입점
-│   └── app.py                     # 독립 실행용 Streamlit 앱
-│
-├── 🐳 Dockerfile.nginx           # Nginx 컨테이너 이미지
-├── 📋 requirements.txt           # 전체 프로젝트 의존성
-└── 📖 README.md                  # 프로젝트 문서
-```
-
-### 주요 모듈별 역할
-
-| 모듈 | 책임 | 핵심 기능 |
-|------|------|-----------|
-| **frontend/** | 사용자 인터페이스 | 채팅 UI, 파일 업로드, 설정 관리 |
-| **backend/rag_api/** | REST API 서버 | 인덱싱, 검색, 채팅 API 제공 |
-| **lecture_rag/** | RAG 엔진 | 문서 처리, 벡터 검색, LLM 답변 생성 |
-| **database/** | 데이터 저장소 | 채팅 기록, 세션, 문서 메타데이터 |
-
-## 🚀 설치 및 실행
-
-### 전제 조건
-
-- Docker 20.10+
-- Docker Compose 2.0+
-- OpenAI API Key (필수)
-
-### 1. 환경 설정
-
-```bash
-# 프로젝트 클론
-git clone <repository-url>
-cd skn15-4th-1team
-
-# 환경 변수 설정
-cp .env.example .env
-```
-
-### 2. 환경 변수 구성 (.env)
-
-```env
-# Database Settings
-POSTGRES_DB=lecture_rag
-POSTGRES_USER=lecture_user
-POSTGRES_PASSWORD=your_secure_password
-DB_HOST=database
-DB_PORT=5432
-
-# API Keys
-OPENAI_API_KEY=your_openai_api_key_here
-
-# RAG Settings
-LECTURE_RAG_MODEL=gpt-4o-mini
-LECTURE_RAG_TEMPERATURE=0.2
-LECTURE_RAG_DEFAULT_TOP_K=5
-LECTURE_RAG_MAX_TOP_K=10
-LECTURE_RAG_MIN_TOP_K=1
-
-# Service Ports
-FRONTEND_PORT=8501
-BACKEND_PORT=8000
-DATABASE_PORT=5432
-
-# Storage
-VECTOR_STORE_DIR=/app/data/vector_store
-
-# Security
-SECRET_KEY=your-secret-key-here
-DEBUG=False
-ALLOWED_HOSTS=localhost,127.0.0.1
-```
-
-### 3. 전체 시스템 실행
-
-```bash
-# 모든 서비스 빌드 및 실행
-docker-compose up -d --build
-
-# 로그 확인
-docker-compose logs -f
-
-# 서비스 상태 확인
-docker-compose ps
-```
-
-### 4. 개별 서비스 실행 (AWS 배포용)
-
-```bash
-# 배포 스크립트 사용
-chmod +x deploy.sh
-./deploy.sh
-
-# 배포 옵션 선택:
-# 1) Frontend (Streamlit)
-# 2) Backend (Django)
-# 3) Database (PostgreSQL)
-# 4) Nginx (Reverse Proxy)
-# 5) Frontend + Nginx
-# 6) 전체 (docker-compose)
-```
-
-### 5. 접속 확인
-
-| 서비스 | URL | 설명 |
-|--------|-----|------|
-| **메인 애플리케이션** | http://localhost | Nginx를 통한 접속 |
-| **Streamlit 직접** | http://localhost:8501 | 프론트엔드 직접 접속 |
-| **API 서버** | http://localhost:8000 | Backend REST API |
-| **API 헬스체크** | http://localhost:8000/api/health/ | 서버 상태 확인 |
-
-## 📡 API 문서
-
-### Base URL
-```
-http://localhost:8000/api/
-```
-
-### 인증
-현재 버전은 인증이 없는 오픈 API입니다.
-
-### 엔드포인트
-
-#### 1. 헬스 체크
-```http
-GET /api/health/
-```
-
-**응답:**
-```json
-{
-    "status": "healthy",
-    "timestamp": "2024-01-15T10:30:00Z",
-    "version": "1.0.0",
-    "database": "connected",
-    "openai_key": "configured"
-}
-```
-
-#### 2. 문서 인덱싱
-```http
-POST /api/index-document/
-```
-
-**요청:**
-```json
-{
-    "filename": "lecture_01.txt",
-    "file_content": "강의 내용...",
-    "model_name": "gpt-4o-mini",
-    "temperature": 0.2
-}
-```
-
-**응답:**
-```json
-{
-    "document_id": 1,
-    "n_documents": 15,
-    "allowed_tokens": {
-        "modules": ["numpy", "pandas"],
-        "symbols": ["list", "dict"]
-    },
-    "message": "Successfully indexed 15 document chunks"
-}
-```
-
-#### 3. 채팅 (질의응답)
-```http
-POST /api/chat/
-```
-
-**요청:**
-```json
-{
-    "session_id": "user-123",
-    "query": "리스트를 정렬하는 방법은?",
-    "top_k": 5,
-    "model_name": "gpt-4o-mini",
-    "temperature": 0.2
-}
-```
-
-**응답:**
-```json
-{
-    "session_id": "user-123",
-    "message_id": 42,
-    "content": "리스트를 정렬하는 방법은 sort() 메서드를 사용하는 것입니다...",
-    "summary": "sort() 메서드로 리스트 정렬 가능",
-    "docs_used": [
-        {
-            "content": "lst.sort() 함수는...",
-            "metadata": {
-                "start_line": 10,
-                "end_line": 15,
-                "kind": "code"
-            }
-        }
-    ],
-    "unknown_tokens": [],
-    "created_at": "2024-01-15T10:30:00Z"
-}
-```
-
-#### 4. 문서 검색
-```http
-POST /api/search/
-```
-
-**요청:**
-```json
-{
-    "query": "정렬 알고리즘",
-    "top_k": 3
-}
-```
-
-**응답:**
-```json
-{
-    "query": "정렬 알고리즘",
-    "documents": [
-        {
-            "content": "버블 정렬은 인접한 원소를...",
-            "metadata": {
-                "start_line": 20,
-                "end_line": 25,
-                "kind": "text"
-            }
-        }
-    ],
-    "allowed_tokens": {
-        "modules": ["numpy"],
-        "symbols": ["list"]
-    },
-    "total_results": 3
-}
-```
-
-#### 5. 채팅 세션 관리
-```http
-GET /api/chat-sessions/{session_id}/messages/
-```
-
-**응답:**
-```json
-[
-    {
-        "id": 1,
-        "role": "user",
-        "content": "안녕하세요",
-        "created_at": "2024-01-15T10:30:00Z"
-    },
-    {
-        "id": 2,
-        "role": "assistant",
-        "content": "안녕하세요! 무엇을 도와드릴까요?",
-        "summary": "인사 응답",
-        "created_at": "2024-01-15T10:30:15Z"
-    }
-]
-```
-
-## 🔄 통신 플로우
-
-### 1. 사용자 질문 처리 플로우
-
-```mermaid
-sequenceDiagram
-    participant U as 👨‍💻 사용자
-    participant N as 🌐 Nginx
-    participant F as 📱 Frontend
-    participant B as ⚙️ Backend
-    participant V as 🔍 Vector Store
-    participant D as 🗄️ Database
-    participant O as 🤖 OpenAI
-
-    U->>N: 질문 입력
-    N->>F: HTTP Request
-    F->>B: POST /api/chat/
-
-    B->>D: 세션 조회/생성
-    D-->>B: 세션 정보
-
-    B->>V: 문서 검색 (query, top_k)
-    V-->>B: 관련 문서들
-
-    B->>O: LLM 답변 생성
-    O-->>B: AI 답변
-
-    B->>D: 채팅 기록 저장
-    D-->>B: 저장 완료
-
-    B-->>F: 답변 + 근거 문서
-    F-->>N: 렌더링된 응답
-    N-->>U: 최종 응답 표시
-```
-
-### 2. 문서 인덱싱 플로우
-
-```mermaid
-sequenceDiagram
-    participant U as 👨‍💻 교수
-    participant F as 📱 Frontend
-    participant B as ⚙️ Backend
-    participant P as 📄 Document Processor
-    participant V as 🔍 Vector Store
-    participant O as 🤖 OpenAI
-    participant D as 🗄️ Database
-
-    U->>F: 강의록 파일 업로드
-    F->>B: POST /api/index-document/
-
-    B->>P: 문서 처리 요청
-    P->>P: 청킹 (Chunking)
-    P-->>B: 문서 청크들
-
-    B->>O: 임베딩 생성
-    O-->>B: 벡터 임베딩
-
-    B->>V: 벡터 인덱스 저장
-    V-->>B: 인덱싱 완료
-
-    B->>D: 문서 메타데이터 저장
-    D-->>B: 저장 완료
-
-    B-->>F: 인덱싱 결과
-    F-->>U: 완료 메시지 표시
-```
-
-## 🤖 RAG 파이프라인
+## 3.9 🔄 전체 파이프라인
 
 ### 1. 문서 처리 파이프라인
 
@@ -618,277 +367,341 @@ graph TD
 | **답변 생성** | GPT-4o-mini | temperature=0.2 | 컨텍스트 기반 답변 생성 |
 | **토큰 검증** | Custom Filter | allowed_tokens.json | 허용되지 않은 토큰 필터링 |
 
-## 📊 모니터링 및 로깅
+## 3.10 📊 단계별 입·출력
 
-### 시스템 상태 확인
+### 문서 인덱싱 단계
 
-```bash
-# 전체 서비스 상태
-docker-compose ps
+| 단계 | 입력 | 처리 | 출력 |
+|------|------|------|------|
+| **1. 파일 업로드** | 강의록 텍스트 파일 | Streamlit 파일 업로더 | 파일 바이너리 데이터 |
+| **2. 텍스트 추출** | 파일 바이너리 | UTF-8 디코딩 | 순수 텍스트 문자열 |
+| **3. 문서 청킹** | 텍스트 문자열 | RecursiveCharacterTextSplitter | Document 객체 리스트 |
+| **4. 임베딩 생성** | Document 객체들 | OpenAI Embeddings API | 1536차원 벡터 배열 |
+| **5. 벡터 인덱싱** | 벡터 배열 | FAISS 인덱스 생성 | .faiss, .pkl 파일 |
+| **6. 메타데이터 저장** | 문서 정보 | PostgreSQL 저장 | Document 레코드 |
 
-# 개별 서비스 로그
-docker-compose logs frontend
-docker-compose logs backend
-docker-compose logs database
-docker-compose logs nginx
+### 질의응답 단계
 
-# 실시간 로그 모니터링
-docker-compose logs -f --tail=100
+| 단계 | 입력 | 처리 | 출력 |
+|------|------|------|------|
+| **1. 질문 접수** | 사용자 질문 텍스트 | Streamlit 입력창 | 질문 문자열 |
+| **2. 질문 임베딩** | 질문 문자열 | OpenAI Embeddings API | 1536차원 질문 벡터 |
+| **3. 유사도 검색** | 질문 벡터 | FAISS 코사인 유사도 | Top-K 문서 청크들 |
+| **4. 컨텍스트 구성** | 검색된 문서들 | 텍스트 결합 및 포맷팅 | 구조화된 컨텍스트 |
+| **5. 프롬프트 생성** | 질문 + 컨텍스트 | 템플릿 기반 생성 | 완성된 프롬프트 |
+| **6. AI 답변 생성** | 프롬프트 | GPT-4o-mini API | AI 생성 답변 |
+| **7. 토큰 검증** | AI 답변 | 허용 토큰 필터링 | 검증된 최종 답변 |
+| **8. 응답 포맷팅** | 최종 답변 + 메타데이터 | JSON 직렬화 | API 응답 객체 |
 
-# 리소스 사용률
-docker stats
+## 3.11 📝 프롬프트
+
+### System Prompt
+```
+당신은 강의록을 기반으로 학생들의 질문에 답변하는 AI 어시스턴트입니다.
+다음 지침을 따라 답변해주세요:
+
+1. 제공된 강의록 내용만을 기반으로 답변하세요
+2. 강의록에 없는 내용은 "강의록에서 다루지 않은 주제입니다"라고 명시하세요
+3. 코드 예시가 있다면 정확히 인용하세요
+4. 답변은 한국어로 작성하세요
+5. 학생이 이해하기 쉽도록 친근하고 명확하게 설명하세요
 ```
 
-### API 헬스 체크
+### Answer Prompt
+```
+강의록 컨텍스트:
+{context}
 
-```bash
-# Backend API 상태
-curl http://localhost:8000/api/health/
+학생 질문: {question}
 
-# Frontend 접속 테스트
-curl http://localhost:8501
-
-# Nginx 상태
-curl http://localhost
+위 강의록 내용을 바탕으로 학생의 질문에 답변해주세요.
+강의록에 관련 내용이 없다면 "강의록에서 다루지 않은 주제입니다"라고 명시하세요.
 ```
 
-### 데이터베이스 모니터링
+### 프롬프트 의도
+- **제한된 답변 범위**: 강의록 내용만으로 답변을 제한하여 정확성 보장
+- **명확한 출처 표시**: 강의록에 없는 내용은 명시적으로 거부
+- **교육적 톤**: 학생에게 친근하고 이해하기 쉬운 설명 제공
+- **일관된 형식**: 모든 답변이 일정한 품질과 형식을 유지
 
-```bash
-# DB 접속
-docker exec -it lecture-rag-database psql -U lecture_user -d lecture_rag
+## 3.12 🔄 데이터 전처리
 
-# 테이블 상태 확인
-\dt
+### 문서 전처리 과정
 
-# 채팅 세션 통계
-SELECT COUNT(*) FROM rag_api_chatsession;
-SELECT COUNT(*) FROM rag_api_chatmessage;
+```python
+# 1. 텍스트 정규화
+def normalize_text(text: str) -> str:
+    # 공백 문자 정규화
+    text = re.sub(r'\s+', ' ', text)
+    # 특수 문자 정리
+    text = re.sub(r'[^\w\s가-힣]', ' ', text)
+    return text.strip()
+
+# 2. 청킹 전략
+def chunk_documents(text: str) -> List[Document]:
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=1000,           # 청크 크기
+        chunk_overlap=200,         # 중복 크기
+        length_function=len,       # 길이 계산 함수
+        separators=["\n\n", "\n", " ", ""]  # 분할 우선순위
+    )
+    return splitter.create_documents([text])
+
+# 3. 메타데이터 추가
+def add_metadata(chunks: List[Document], source: str) -> List[Document]:
+    for i, chunk in enumerate(chunks):
+        chunk.metadata.update({
+            "source": source,
+            "chunk_id": i,
+            "chunk_size": len(chunk.page_content)
+        })
+    return chunks
 ```
 
-### 성능 지표
+### 허용 토큰 추출
 
-| 지표 | 목표값 | 모니터링 방법 |
-|------|--------|---------------|
-| **응답 시간** | < 3초 | API 로그 분석 |
-| **검색 정확도** | > 85% | 사용자 피드백 |
-| **시스템 가용성** | > 99% | Docker health checks |
-| **메모리 사용률** | < 80% | docker stats |
+```python
+def extract_allowed_tokens(text: str) -> Dict[str, List[str]]:
+    """
+    강의록에서 사용된 모듈과 심볼을 추출하여 허용 토큰 생성
+    """
+    # Python 코드 블록 추출
+    code_blocks = re.findall(r'```python\n(.*?)\n```', text, re.DOTALL)
 
-## 🚀 배포 가이드
+    modules = set()
+    symbols = set()
 
-### AWS 클라우드 배포
+    for code in code_blocks:
+        # import 문에서 모듈 추출
+        imports = re.findall(r'import (\w+)', code)
+        modules.update(imports)
 
-#### 1. EC2 인스턴스 준비
+        # 변수명과 함수명 추출
+        symbols.update(re.findall(r'\b([a-zA-Z_]\w*)\b', code))
 
-```bash
-# Docker 설치
-sudo yum update -y
-sudo yum install -y docker
-sudo service docker start
-sudo usermod -a -G docker ec2-user
-
-# Docker Compose 설치
-sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+    return {
+        "modules": list(modules),
+        "symbols": list(symbols)
+    }
 ```
 
-#### 2. 다중 인스턴스 배포
+## 3.13 ⚙️ 환경설정
 
-```mermaid
-graph TB
-    subgraph "AWS Cloud"
-        subgraph "Frontend Tier"
-            F1[EC2: Frontend-1<br/>Streamlit]
-            F2[EC2: Frontend-2<br/>Streamlit]
-        end
-
-        subgraph "Application Tier"
-            B1[EC2: Backend-1<br/>Django API]
-            B2[EC2: Backend-2<br/>Django API]
-        end
-
-        subgraph "Data Tier"
-            D1[EC2: Database<br/>PostgreSQL]
-            S3[S3: Vector Store<br/>FAISS Index]
-        end
-
-        subgraph "Load Balancer"
-            ALB[Application Load Balancer]
-        end
-    end
-
-    U[👥 Users] --> ALB
-    ALB --> F1
-    ALB --> F2
-    F1 --> B1
-    F1 --> B2
-    F2 --> B1
-    F2 --> B2
-    B1 --> D1
-    B2 --> D1
-    B1 --> S3
-    B2 --> S3
-```
-
-#### 3. 배포 스크립트 사용
+### 개발 환경 설정
 
 ```bash
-# 프론트엔드 배포
-./deploy.sh
-# 선택: 1) Frontend (Streamlit)
+# 1. 저장소 클론
+git clone <repository-url>
+cd skn15-4th-1team
 
-# 백엔드 배포
-./deploy.sh
-# 선택: 2) Backend (Django)
+# 2. 환경 변수 파일 생성
+cp .env.example .env
 
-# 데이터베이스 배포
-./deploy.sh
-# 선택: 3) Database (PostgreSQL)
-```
+# 3. OpenAI API 키 설정
+echo "OPENAI_API_KEY=your_api_key_here" >> .env
 
-#### 4. 환경별 설정
-
-| 환경 | 도메인 | 설정 파일 |
-|------|--------|-----------|
-| **Development** | localhost | .env.dev |
-| **Staging** | staging.example.com | .env.staging |
-| **Production** | lecture-rag.example.com | .env.prod |
-
-### 보안 설정
-
-```bash
-# SSL 인증서 설정 (Let's Encrypt)
-sudo certbot --nginx -d your-domain.com
-
-# 방화벽 설정
-sudo ufw allow 80
-sudo ufw allow 443
-sudo ufw enable
-
-# 환경 변수 보안
-chmod 600 .env
-```
-
-## 🔧 트러블슈팅
-
-### 자주 발생하는 문제들
-
-#### 1. 🐳 Docker 관련 문제
-
-**문제:** 컨테이너 시작 실패
-```bash
-# 해결방법
-docker-compose down
-docker system prune -f
+# 4. Docker 환경 구성
 docker-compose up -d --build
 ```
 
-**문제:** 포트 충돌
-```bash
-# 포트 사용 확인
-sudo netstat -tulpn | grep :8000
-sudo lsof -i :8501
-
-# 프로세스 종료
-sudo kill -9 <PID>
-```
-
-#### 2. 🗄️ 데이터베이스 연결 문제
-
-**문제:** 데이터베이스 연결 실패
-```bash
-# DB 컨테이너 상태 확인
-docker-compose logs database
-
-# 수동 연결 테스트
-docker exec -it lecture-rag-database pg_isready -U lecture_user
-
-# 마이그레이션 재실행
-docker exec lecture-rag-backend python manage.py migrate
-```
-
-#### 3. 🤖 OpenAI API 문제
-
-**문제:** API 키 인식 불가
-```bash
-# 환경 변수 확인
-docker exec lecture-rag-backend env | grep OPENAI
-
-# API 키 테스트
-curl -H "Authorization: Bearer $OPENAI_API_KEY" \
-     https://api.openai.com/v1/models
-```
-
-#### 4. 📊 메모리 부족 문제
-
-**문제:** 임베딩 모델 로드 실패
-```yaml
-# docker-compose.yml 수정
-services:
-  backend:
-    deploy:
-      resources:
-        limits:
-          memory: 4G
-        reservations:
-          memory: 2G
-```
-
-#### 5. 🔍 검색 결과 없음
-
-**문제:** 벡터 스토어가 비어있음
-```bash
-# 인덱스 파일 확인
-docker exec lecture-rag-backend ls -la /app/data/vector_store/
-
-# 재인덱싱 수행
-# Frontend에서 강의록 재업로드
-```
-
-### 로그 분석
+### 운영 환경 설정
 
 ```bash
-# 전체 시스템 로그
-docker-compose logs --tail=200
+# AWS EC2 인스턴스에서
+# 1. Docker 설치
+sudo yum update -y
+sudo yum install -y docker
+sudo service docker start
 
-# 특정 서비스 에러 로그
-docker-compose logs backend | grep ERROR
-docker-compose logs frontend | grep Exception
-
-# 실시간 에러 모니터링
-docker-compose logs -f | grep -i error
+# 2. 프로젝트 배포
+./deploy.sh
+# 배포 옵션 선택 (1-6)
 ```
 
-### ## 🛠️ 기술 스택 (Tech Stack)
+### 환경 변수 상세
+
+| 변수명 | 기본값 | 설명 |
+|--------|--------|------|
+| `OPENAI_API_KEY` | 필수 입력 | OpenAI API 인증 키 |
+| `POSTGRES_DB` | lecture_rag | 데이터베이스 이름 |
+| `POSTGRES_USER` | lecture_user | DB 사용자명 |
+| `POSTGRES_PASSWORD` | 사용자 설정 | DB 비밀번호 |
+| `LECTURE_RAG_MODEL` | gpt-4o-mini | 사용할 LLM 모델 |
+| `LECTURE_RAG_TEMPERATURE` | 0.2 | LLM 창의성 수준 |
+| `VECTOR_STORE_DIR` | /app/data/vector_store | 벡터 스토어 저장 경로 |
+
+# 4. 기술스택
 
 | 분야 (Category) | 기술 스택 (Technology) | 세부 내용 (Details) |
 | :--- | :--- | :--- |
-| **Backend** | ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white) <br/> ![Django REST Framework](https://img.shields.io/badge/Django_REST_Framework-A30000?style=for-the-badge&logo=django&logoColor=white) | Django 4.2+ 버전 및 DRF를 사용한 프레임워크 구성 |
-| | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white) | Docker 컨테이너 기반 데이터베이스 |
-| | ![Gunicorn](https://img.shields.io/badge/Gunicorn-499848?style=for-the-badge&logo=gunicorn&logoColor=white) | Production 환경용 웹 서버 |
-| **Frontend** | ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white) <br/> ![Python](https://img.shields.io/badge/Requests-2F855A?style=for-the-badge&logo=python&logoColor=white) | Streamlit 1.28+ 기반 프레임워크 및 `requests` 라이브러리 |
-| | ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) | 반응형 디자인을 위한 Custom CSS 스타일링 |
-| **AI/ML** | ![Facebook](https://img.shields.io/badge/FAISS-4A90E2?style=for-the-badge&logo=facebook&logoColor=white) <br/> ![Python](https://img.shields.io/badge/Sentence_Transformers-3776AB?style=for-the-badge&logo=python&logoColor=white) | FAISS 벡터 저장소 및 임베딩 모델 |
-| | ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white) <br/> ![LangChain](https://img.shields.io/badge/LangChain-019934?style=for-the-badge&logo=langchain&logoColor=white) | OpenAI GPT-4o-mini 기반 다중 LLM 지원 및 LangChain 활용 |
-| **Infrastructure** | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white) <br/> ![Docker Compose](https://img.shields.io/badge/Docker_Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white) | Docker & Docker Compose를 이용한 컨테이너화 |
-| | ![Amazon AWS](https://img.shields.io/badge/AWS_EC2-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white) | AWS EC2 기반 Docker 컨테이너 배포 |
+| **Backend** | ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white) <br/> ![Django REST Framework](https://img.shields.io/badge/Django_REST_Framework-A30000?style=for-the-badge&logo=django&logoColor=white) | Django 4.2+ 버전 및 DRF를 사용한 RESTful API 서버 구성 |
+| | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white) | 채팅 세션, 메시지, 문서 메타데이터 저장용 관계형 데이터베이스 |
+| | ![Gunicorn](https://img.shields.io/badge/Gunicorn-499848?style=for-the-badge&logo=gunicorn&logoColor=white) | Production 환경용 WSGI 웹 서버 |
+| **Frontend** | ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white) <br/> ![Python](https://img.shields.io/badge/Requests-2F855A?style=for-the-badge&logo=python&logoColor=white) | 채팅 UI 및 Backend API 통신 클라이언트 |
+| | ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) | 카카오톡 스타일 채팅 UI 커스텀 스타일링 |
+| **AI/ML** | ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white) | GPT-4o-mini 언어모델 및 text-embedding-3-small 임베딩 |
+| | ![Facebook](https://img.shields.io/badge/FAISS-4A90E2?style=for-the-badge&logo=facebook&logoColor=white) | CPU 기반 벡터 유사도 검색 라이브러리 |
+| | ![LangChain](https://img.shields.io/badge/LangChain-019934?style=for-the-badge&logo=langchain&logoColor=white) | 문서 처리, 청킹, RAG 파이프라인 구성 |
+| **Infrastructure** | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white) <br/> ![Docker Compose](https://img.shields.io/badge/Docker_Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white) | 마이크로서비스 컨테이너화 및 오케스트레이션 |
+| | ![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white) | 리버스 프록시 및 로드 밸런서 |
+| | ![Amazon AWS](https://img.shields.io/badge/AWS_EC2-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white) | 클라우드 컴퓨팅 인스턴스 기반 배포 |
 
+# 5. 수행결과
 
+## 5.1 🏠 홈 화면 (Overview)
 
+### 메인 인터페이스
+- **직관적인 채팅 UI**: 카카오톡과 유사한 친숙한 인터페이스
+- **사이드바 설정 패널**: LLM 모델, Temperature, Top-K 설정
+- **실시간 API 상태 표시**: Backend 연결 상태 확인
+- **파일 업로드 기능**: 강의록 드래그 앤 드롭 업로드
 
-### 성능 최적화
+```
+🎓 Lecture-RAG
+├── 📊 API 상태: ✅ Backend 연결됨
+├── ⚙️ 설정 패널
+│   ├── 🤖 모델: gpt-4o-mini
+│   ├── 🌡️ Temperature: 0.2
+│   └── 📄 Top-K: 5
+├── 📤 파일 업로드
+│   └── 📁 lecture_01.txt
+└── 💬 채팅 영역
+    └── "안녕하세요! AI웅이에요"
+```
 
-| 항목 | 현재 설정 | 최적화 방안 |
-|------|-----------|-------------|
-| **임베딩 모델** | HuggingFace (로컬) | OpenAI API 사용 |
-| **벡터 검색** | FAISS (CPU) | GPU 버전 또는 Pinecone |
-| **LLM 응답** | GPT-4o-mini | 모델별 응답 시간 비교 |
-| **컨테이너 리소스** | 기본값 | 메모리/CPU 제한 설정 |
+## 5.2 💬 답변 섹션 (채팅 인터페이스)
 
+### 질의응답 플로우
 
----
+| 단계 | 사용자 화면 | 시스템 처리 |
+|------|-------------|-------------|
+| **1. 질문 입력** | "리스트를 정렬하는 방법은?" | 텍스트 임베딩 생성 |
+| **2. 로딩 표시** | "AI웅이 답변을 생성하고 있어요..." | 벡터 검색 + LLM 호출 |
+| **3. 요약 답변** | 클릭 가능한 요약 카드 | 2-3문장 요약 생성 |
+| **4. 상세 보기** | 전체 답변 + 근거 스니펫 | 메타데이터 포함 응답 |
 
+### 답변 형태 비교
+
+#### 요약 답변 (기본 표시)
+```
+[AI웅] 💬
+sort() 메서드나 sorted() 함수를 사용하여 리스트를 정렬할 수 있습니다.
+
+*클릭하여 상세 답변 및 근거 스니펫 보기*
+```
+
+#### 상세 답변 (클릭 시)
+```
+🙋‍♂️ 질문
+리스트를 정렬하는 방법은?
+
+📝 상세 답변
+리스트를 정렬하는 방법은 다음과 같습니다:
+
+1. sort() 메서드: 원본 리스트를 직접 수정
+2. sorted() 함수: 새로운 정렬된 리스트 반환
+
+코드 예시:
+```python
+# sort() 메서드
+my_list = [3, 1, 4, 1, 5]
+my_list.sort()
+print(my_list)  # [1, 1, 3, 4, 5]
+
+# sorted() 함수
+original = [3, 1, 4, 1, 5]
+sorted_list = sorted(original)
+print(sorted_list)  # [1, 1, 3, 4, 5]
+```
+
+📊 근거 스니펫
+▼ Chunk 1 | code | 라인 45-52 | 시작: def sort_example():
+
+원본에서 찾기: 'def sort_example():' 검색하여 라인 45-52 확인
+```
+
+## 5.3 🔍 근거 스니펫 (세부 확인 패널)
+
+### 근거 제공 방식
+- **출처 명시**: 라인 번호, 청크 종류, 시작 라인 미리보기
+- **원본 추적**: 강의록에서 해당 부분을 찾을 수 있는 검색 힌트
+- **코드 하이라이팅**: Python 코드는 syntax highlighting 적용
+- **확장/축소**: 펼치기/접기 가능한 아코디언 UI
+
+```
+📊 근거 스니펫
+
+▼ 2024-03-15 | 라인 10-25 | 시작: # 리스트 정렬 방법
+📅 강의일: 2024-03-15
+📍 위치: 라인 10-25
+📏 줄 수: 16줄
+
+ℹ️ 원본에서 찾기: '# 리스트 정렬 방법' 검색하여 라인 10-25 확인
+
+▼ Chunk 2 | code | 라인 45-60 | 시작: def advanced_sorting():
+```
+
+## 5.4 ⚙️ 질의/옵션 입력 영역 (실행 패널)
+
+### 설정 옵션
+
+| 옵션 | 기본값 | 범위 | 설명 |
+|------|--------|------|------|
+| **LLM 모델** | gpt-4o-mini | 8개 모델 | OpenAI, Claude, Gemini 지원 |
+| **Temperature** | 0.2 | 0.0 - 1.0 | 답변 창의성 수준 |
+| **Top-K** | 5 | 1 - 10 | 검색할 문서 청크 수 |
+
+### 인덱싱 기능
+```
+📤 인덱싱
+┌─────────────────────────────────────┐
+│ 📁 강의록 파일 업로드                │
+│ (.txt, .md, .py, .mdx)              │
+└─────────────────────────────────────┘
+[📊 인덱싱 실행] [⚙️ 설정]
+
+✅ 인덱싱 완료! 문서 조각 15개 생성
+📋 허용 토큰(모듈/심볼) 보기 ▼
+```
+
+## 5.5 📊 최종 답변 + 근거 요약 (결과 패널)
+
+### 통합 결과 화면
+```
+💬 채팅 기록
+┌─────────────────────────────────────┐
+│ You: 리스트를 정렬하는 방법은?        │
+└─────────────────────────────────────┘
+┌─────────────────────────────────────┐
+│ AI웅: sort() 메서드나 sorted() 함수를 │
+│ 사용하여 리스트를 정렬할 수 있습니다.  │
+│                                     │
+│ *클릭하여 상세 답변 및 근거 스니펫 보기* │
+└─────────────────────────────────────┘
+
+📊 세션 통계
+- 총 질문 수: 5개
+- 평균 응답 시간: 2.3초
+- 사용된 토큰: 1,247개
+```
+
+## 5.6 🔄 답변 방식 비교
+
+### 3차 vs 4차 프로젝트 답변 품질
+
+| 구분 | 3차 프로젝트 | 4차 프로젝트 |
+|------|-------------|-------------|
+| **답변 구조** | 단일 답변 | 요약 + 상세 답변 |
+| **근거 제공** | 인라인 표시 | 펼치기 가능한 스니펫 |
+| **사용자 경험** | 스크롤 방식 | 클릭 기반 탐색 |
+| **정보 밀도** | 높음 (한번에 모든 정보) | 적응형 (필요시 확장) |
+| **모바일 대응** | 제한적 | 반응형 디자인 |
+
+### 답변 정확도 향상
+- **토큰 필터링**: 강의록에 없는 용어 사용 방지
+- **컨텍스트 제한**: 관련 문서만 사용하여 hallucination 감소
+- **출처 추적**: 모든 답변에 명확한 근거 제공
+- **일관성 보장**: 프롬프트 엔지니어링을 통한 안정적인 답변 형식
 
 ---
 
