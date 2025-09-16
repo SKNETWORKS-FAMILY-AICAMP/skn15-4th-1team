@@ -1,8 +1,46 @@
-# skn15-4th-1team
+# skn15-3rd-1team
+
+# 0.목차
+- [1. 팀 소개](#1-팀-소개)
+- [2. 프로젝트 기간](#2-프로젝트-기간)
+- [3. 프로젝트 개요](#3-프로젝트-개요) 
+  - [3.1 프로젝트명](#31--프로젝트명)
+  - [3.2 프로젝트 배경 및 목적](#32--프로젝트-배경-및-목적)
+  - [3.3 프로젝트 소개](#33--프로젝트-소개)
+  - [3.4 기대효과](#34--기대효과)
+  - [3.5 대상 사용자](#35--대상-사용자)
+  - [3.6 프로젝트 폴더 구조](#36--프로젝트-폴더-구조)
+  - [3.7 모듈 및 함수 별 기능](#37--모듈-및-함수-별-기능)
+  - [3.8 LangGraph Flow](#38--langgraph-flow)
+  - [3.9 시스템 아키텍쳐](#39--시스템-아키텍쳐)
+  - [3.10 전체 파이프라인](#310--전체-파이프라인)
+  - [3.11 단계별 입·출력](#311--단계별-입출력)
+  - [3.12 프롬프트](#312-프롬프트)
+    - [System Prompt](#system-prompt)
+    - [Answer Prompt](#answer-prompt)
+    - [프롬프트 의도](#프롬프트-의도)
+  - [3.13 데이터 전처리](#313-데이터-전처리)
+  - [3.14 환경설정](#314-환경설정)
+  - [3.15 임베딩 선정 이유](#315-임베딩-선정-이유)
+- [4. 기술스택](#4-기술스택)
+- [5. 수행결과](#5-수행결과)
+  - [5.0 홈 화면(Overview)](#50-홈-화면overview)
+  - [5.1 답변 섹션(개요 + RAG 코드 샘플)](#51-답변-섹션개요--rag-코드-샘플)
+  - [5.2 근거 스니펫(세부 확인 패널)](#52-근거-스니펫세부-확인-패널)
+  - [5.3 질의/옵션 입력 영역(실행 패널)](#53-질의옵션-입력-영역실행-패널)
+  - [5.4 최종 답변 + 근거 요약(결과 패널)](#54-최종-답변--근거-요약결과-패널)
+  - [5.5 답변 방식 비교](#55-답변-방식-비교)
+- [6. 한 줄 회고](#6-한-줄-회고)
+
+
+
 # 1. 팀 소개 
 # 팀명 : 웅이와 아이들
 
 <div align="center">
+
+## 햄토리GO 🐹
+
 
 
 | **조태민** | **박진우** | **서혜선** | **임가은** | **임경원** | **홍민식** |
@@ -16,476 +54,420 @@
 
 ---
 # 2. 프로젝트 기간
-	- 2025.09.15 ~ 2025.09.16 (총 2일)
+	- 2025.08.22 ~ 2025.08.25 (총 2일)
 ---
 # 3. 프로젝트 개요
 
-⚡ **빠른 시작**: `docker-compose up -d` → http://localhost:8501 접속!
-
-
 ## 3.1 📕 프로젝트명
-# 📚 Lecture-RAG: 4차 프로젝트 (서버 분산 구조)
-
-강의록 기반 질의응답 시스템을 Docker와 Django REST API로 구현한 분산 애플리케이션입니다.
+### Lecture-RAG: 강의록 기반 AI 학습 도우미
+---
 
 ## 3.2 ✅ 프로젝트 배경 및 목적
+### - 부트캠프에서 다루는 방대한 강의 내용을 효과적으로 학습할 수 있도록 LLM을 활용한 “맞춤형 질문/답변 시스템” 필요
 
-### 문제 상황
-- **기존 문제**: 대용량 강의 자료에서 원하는 정보를 찾기 어려움
-- **학습자 어려움**: 수백 페이지의 강의록에서 특정 내용 검색 시간 소요
-- **교육자 부담**: 반복적인 질문에 대한 개별 답변 제공의 한계
-- **정보 분산**: 여러 파일에 흩어진 관련 정보를 종합하기 어려움
+### - 단순 GPT 질의응답이 아닌, 사용자가 제공한 강의록/문서 기반으로 답변을 생성하여 맥락적 신뢰성 확보
 
-### 해결 목표
-🎯 **AI 기반 스마트 학습 도우미 구축**
-- RAG(Retrieval-Augmented Generation) 기술로 정확한 답변 제공
-- 실시간 질의응답으로 학습 효율성 극대화
-- 근거 자료 제시로 신뢰성 있는 정보 전달
-- 확장 가능한 서버 아키텍처로 다중 사용자 지원
-
+### - 불필요한 외부 라이브러리 호출을 방지하고, 강의록에서 제공된 함수·코드 스타일을 모방하여 코드 예제 제시
+---
 ## 3.3 🖐️ 프로젝트 소개
+### - 업로드한 강의록(.txt, .py, .md 등) 파일을 자동으로 청킹하고 임베딩하여 FAISS VectorStore에 저장
 
-**Lecture-RAG**는 대학 강의록과 교육 자료를 AI가 이해할 수 있는 형태로 변환하여, 학습자가 자연어로 질문하면 관련 내용을 찾아 정확한 답변을 제공하는 지능형 교육 지원 시스템입니다.
+### - 사용자가 입력한 질문을 기반으로 강의록에서 의미적으로 유사한 조각을 검색
 
-### 🔑 핵심 기능
-1. **📄 스마트 문서 인덱싱**: 강의록을 AI가 검색 가능한 벡터 형태로 변환
-2. **🤖 실시간 AI 대화**: GPT-4 기반 자연어 질의응답
-3. **📊 근거 자료 제시**: 답변에 사용된 원문 스니펫 표시
-4. **💾 대화 이력 관리**: 모든 질의응답 기록 저장 및 조회
-5. **🎛️ 맞춤형 설정**: 모델 선택, 검색 깊이 등 개인화 옵션
+### - OpenAI GPT 모델을 통해 컨텍스트 RAG 기반 답변 생성
 
-### 🚀 기술적 특징
-- **마이크로서비스 아키텍처**: Frontend, Backend, Database 분리
-- **RESTful API**: 표준화된 HTTP API로 확장성 보장
-- **벡터 검색**: FAISS 기반 고속 의미 검색
-- **실시간 응답**: 최적화된 검색 및 생성 파이프라인
-- **컨테이너화**: Docker 기반 손쉬운 배포 및 확장
+### - 미허용된 토큰(import, 함수) 사용 시 자동으로 감지하여 재생성 기능 수행
 
+### - Streamlit UI를 통해 손쉽게 문서 업로드, 인덱싱, 질의응답 가능
+---
 ## 3.4 ❤️ 기대효과
+### - 강의 내용 복습 및 개인화된 학습 도우미 활용 가능
 
-### 🎓 학습자 관점
-- **⏰ 학습 시간 단축**: 필요한 정보를 즉시 찾아 학습 효율성 3배 향상
-- **🎯 정확한 정보 획득**: AI가 검증된 강의 자료에서만 답변 추출
-- **🔄 반복 학습 지원**: 언제든 질문하고 복습할 수 있는 24/7 AI 튜터
-- **📈 이해도 증진**: 단순 검색이 아닌 맥락적 설명으로 깊이 있는 학습
+### - 코딩 학습 시 강의 자료 기반 맞춤 코드 예제를 제공 → 실습 효율성 향상
 
-### 👨‍🏫 교육자 관점
-- **📉 반복 질문 감소**: 일반적인 질문을 AI가 대신 처리
-- **📊 학습 패턴 분석**: 학생들의 질문 데이터로 교육과정 개선 인사이트
-- **⚡ 즉시 피드백**: 학생이 실시간으로 궁금증 해결
-- **📚 교육 자료 활용도 증대**: 기존 강의록의 재사용성 극대화
-
-### 🏢 교육기관 관점
-- **💰 운영비용 절감**: TA(Teaching Assistant) 인력 절약
-- **📈 교육 품질 향상**: 일관되고 정확한 정보 제공
-- **🔄 확장성**: 여러 과목, 다수 학생 동시 지원
-- **📱 접근성**: 웹 기반으로 언제 어디서나 접근 가능
-
+### - 불필요하거나 잘못된 답변 최소화
+---
 ## 3.5 👤 대상 사용자
+### - 부트캠프 수강생 및 기타 강의 학습자
 
-### 🎯 1차 대상 (Primary Users)
-| 사용자 그룹 | 사용 목적 | 주요 니즈 |
-|------------|----------|----------|
-| **대학생** | 강의 복습, 과제 수행 | 빠른 정보 검색, 이해도 확인 |
-| **대학원생** | 연구 자료 탐색 | 심화 내용 질의, 참고 문헌 확인 |
-| **교수/강사** | 학생 질문 대응 지원 | 효율적 교육 지원, 질문 패턴 분석 |
-
-### 🎯 2차 대상 (Secondary Users)
-| 사용자 그룹 | 활용 시나리오 | 기대 효과 |
-|------------|-------------|----------|
-| **기업 교육팀** | 사내 교육 자료 활용 | 교육 효율성 증대 |
-| **온라인 강의 플랫폼** | 수강생 학습 지원 | 완주율 증가, 만족도 향상 |
-| **도서관/학습센터** | 자료 검색 서비스 | 이용자 편의성 증대 |
-
-### 👥 사용자 페르소나
-
-#### 📚 "효율적인 학습자" - 김대학 (22세, 컴퓨터공학과 3학년)
-- **상황**: 중간고사 준비로 200페이지 강의록 복습 필요
-- **니즈**: "딥러닝에서 backpropagation이 어떻게 작동하는지 쉽게 설명해줘"
-- **사용 패턴**: 개념 질문 → 예제 요청 → 연관 개념 탐색
-
-#### 🔬 "깊이 있는 연구자" - 박석사 (26세, 인공지능 전공 대학원생)
-- **상황**: 논문 작성을 위한 선행 연구 분석
-- **니즈**: "transformer 아키텍처의 attention mechanism 수식과 구현 방법"
-- **사용 패턴**: 심화 질문 → 수식/코드 확인 → 참고 자료 수집
-
-#### 👨‍🏫 "혁신적인 교육자" - 이교수 (45세, 데이터사이언스과 교수)
-- **상황**: 400명 대형 강의에서 개별 질문 대응 어려움
-- **니즈**: 학생들이 자주 묻는 질문 패턴 파악 및 자동 응답
-- **사용 패턴**: 질문 통계 확인 → 강의 개선점 도출 → 추가 자료 제공
-
-## 3.6 🏗️ 3차 → 4차 프로젝트 주요 변경사항
-
-| 항목 | 3차 프로젝트 | 4차 프로젝트 |
-|------|-------------|-------------|
-| **아키텍처** | 단일 Streamlit 애플리케이션 | 분산 서버 구조 (Frontend + Backend + Database) |
-| **데이터 저장** | 로컬 파일 시스템 | PostgreSQL 데이터베이스 |
-| **API** | 내부 함수 호출 | RESTful API (Django REST Framework) |
-| **배포** | 단일 컨테이너 | Docker Compose 멀티 컨테이너 |
-| **확장성** | 수직 확장만 가능 | 수평 확장 가능 (각 서비스 독립적) |
-| **데이터 지속성** | 세션 기반 (임시) | 데이터베이스 영구 저장 |
-| **개발/운영** | 개발환경 중심 | Production-ready 구조 |
-## 3.7 ERD 구성
-
-<img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/f2a63960-e52a-4ab3-8a43-d70fcb09faf1" />
-
-
-
-
-강의록 기반 질의응답 시스템을 Docker와 Django REST API로 구현한 분산 애플리케이션입니다.
-
-## 3.8 🏗️ 시스템 아키텍처
-
+### - 내부 매뉴얼/문서를 기반으로 효율적 학습이 필요한 개발자 및 연구원
+---
+## 3.6 📁 프로젝트 폴더 구조
 ```
-┌─────────────────┐    HTTP/REST API    ┌─────────────────┐    SQL    ┌─────────────────┐
-│                 │    (Port: 8501)     │                 │           │                 │
-│   Frontend      │◄───────────────────►│   Backend       │◄─────────►│   Database      │
-│   (Streamlit)   │                     │   (Django)      │           │   (PostgreSQL)  │
-│                 │                     │   (Port: 8000)  │           │   (Port: 5432)  │
-└─────────────────┘                     └─────────────────┘           └─────────────────┘
-         │                                       │
-         │                                       │
-         ▼                                       ▼
-  ┌─────────────┐                        ┌─────────────┐
-  │ Streamlit   │                        │ Vector      │
-  │ UI/UX       │                        │ Store       │
-  │ Components  │                        │ (FAISS)     │
-  └─────────────┘                        └─────────────┘
+SKN15-3rd-1Team/
+
+├── 📁 lecture_rag/                   	# 강의록 기반 RAG 패키지
+│   ├── __init__.py                     # 패키지 초기화/공개 API
+│   ├── app.py                          # Streamlit 앱 엔트리(UI, 인덱싱/QA)
+│   ├── config.py                       # dataclass 설정(LLM/청킹/검색/프롬프트)
+│   ├── document_processor.py           # 날짜(YYYY.MM.DD) 기반 청킹 및 메타 생성
+│   ├── google_drive.py                 # (신규) 구글 드라이브 연계 모듈(파일 로드/저장)
+│   ├── llm_handler.py                  # ChatOpenAI 래퍼, 답변 생성/재시도/토큰검증
+│   ├── utils.py                        # 텍스트 I/O, 코드블록 감지, 허용 토큰 유틸
+│   └── vector_store.py                 # FAISS 임베딩/인덱싱/검색, allowed_tokens.json 관리
+├── .gitignore                          # Git 제외 규칙
+├── langgraph_flow.py                   # LangGraph 파이프라인 정의/다이어그램 생성 스크립트
+├── main.py                             # (선택) 앱 실행 진입점
+├── rag_flow.png                        # 파이프라인 이미지(README 삽입용)
+├── rag_flow_mermaid.md                 # Mermaid 다이어그램 정의(문서화용)
+├── README.md                           # 프로젝트 문서
+└── requirements.txt                    # 의존성 목록
+  🚫 로컬에만 있는 파일들 (.gitignore로 제외)
+#.env - OpenAI API 키 등
+# .lecture_index/ - FAISS 인덱스 (토큰 포함)
+# pycache/ - Python 캐시
+# .claude/ - Claude Code 설정
+```
+---
+## 3.7 🔗모듈 및 함수 별 기능
+📦 **패키지/폴더**, 🧩 **모듈(파일)**, 🧪 **테스트/예시**, ⚙️ **설정/환경**, 💾 **저장/인덱스**, 🔍 **검색**, 🧠 **LLM/프롬프트**, 🧰 **유틸**, 🖥️ **UI**
+
+| **파일/모듈** | **주요 함수/클래스** | **설명**|
+| --- | --- | --- |
+| ⚙️ **config.py** | `Config` | 전역 설정을 보관하는 데이터클래스(모델명, 온도, 경로 등). |
+|  | `from_env()` | 환경변수에서 설정 로드. |
+|  | `to_env()` | 현재 설정을 환경변수에 반영. |
+| 🧰 **utils.py** | `read_text()` | 파일을 UTF-8로 읽어 텍스트 반환. |
+|  | `detect_code_blocks()` | 텍스트에서 코드/일반 텍스트 블록 분리. |
+|  | `extract_allowed_tokens()` | import/함수/클래스/상수에서 허용 토큰 추출. |
+|  | `find_unknown_tokens()` | 코드에서 비허용 모듈/심볼 탐지. |
+| 🧩 **document_processor.py** | `DocumentProcessor.process()` | 강의록을 읽고 청크 `Document` 리스트로 변환. |
+|  | `_chunk_by_date()` | YYYY.MM.DD 날짜 기준 분할 및 메타 생성. |
+|  | `_chunk_by_content()` | 코드/텍스트 특성에 맞는 추가 분할. |
+| 💾 **vector_store.py** | `VectorStore.index_document()` | 임베딩 후 FAISS 인덱스 생성·저장(허용 토큰 JSON 포함). |
+|  | `search()` | 질의 임베딩 기반 Top‑K 유사 문서 검색. |
+|  | `_load_index()` | 디스크의 FAISS 인덱스 로드. |
+|  | `_save_index()` | FAISS 인덱스 저장. |
+| 🧠 **llm_handler.py** | `generate_answer()` | 질의+컨텍스트로 LLM 답변 생성, 필요 시 제약 재시도. |
+|  | `_make_context_block()` | 프롬프트용 컨텍스트 문자열 구성. |
+|  | `_check_unknown_tokens()` | 답변 코드 블록의 비허용 토큰 검사. |
+|  | `_create_style_hint()` | 허용 모듈/심볼 힌트 문자열 생성. |
+| 🖥️ **app.py** | `LectureRAGApp.run()` | Streamlit 앱 실행. |
+|  | `_render_sidebar()` | 설정 사이드바 렌더링(모델/온도/경로). |
+|  | `_render_qa_section()` | 질의·Top‑K·답변 생성 UI 렌더링. |
+|  | `_handle_indexing()` | 업로드/경로 입력 → 인덱싱 처리. |
+|  | `_handle_qa()` | 검색→LLM 생성→토큰 검증→표시 파이프라인. |
+|  | `_render_evidence_snippets()` | 근거 스니펫 및 메타 표시. |
+
+
+
+---
+## 3.8 ♒ LangGraph Flow
+<img width="250" height="600" alt="image" src="https://github.com/user-attachments/assets/9834c9d1-7bf2-4400-868e-90cbff2487c5" />
+
+- preprocess_query(불용어 제거/정규화) → vector_search(Top‑K 스니펫 수집) → load_allowed_tokens(화이트리스트 로드) → build_context(근거 블록 생성) → generate_answer(LLM 호출) → check_tokens(코드블록 검증) → retry_with_constraints(제약 강화 재시도)
+- check_tokens 단계에서 허용되지 않은 모듈/심볼이 검출되면 retry_with_constraints로 분기해 화이트리스트를 강제한 프롬프트로 한 번 더 답변을 생성하고, 문제가 없으면 end로 종료한다.
+---
+## 3.9 🖥️ 시스템 아키텍쳐
+<img width="700" height="350" alt="image" src="https://github.com/user-attachments/assets/7831f314-49d2-42f5-b674-aae1204dd047" />
+
+
+---
+## 3.10 🚦 전체 파이프라인
+| 단계 | 설명 요약 |
+| --- | --- |
+| 🧹 전처리 | 입력 질의를 정규화해 공백 정리·불용어 최소화 등으로 검색 친화적 형태로 변환한다. |
+| 🔎 벡터 검색 | 인덱싱된 강의록에서 질의 임베딩과 유사한 문서 조각 Top‑K를 수집한다. |
+| ✅ 토큰 로드 | 인덱싱 시 저장된 화이트리스트(modules, symbols)를 읽어 제약 조건의 기준으로 사용한다. |
+| 🧩 컨텍스트 구성 | 스니펫 본문과 메타데이터(강의일, 시작/끝 라인, chunk_id)를 묶어 LLM에 전달할 컨텍스트 블록을 만든다.|
+| 🧠 1차 생성 | 시스템 프롬프트·출력 가이드·컨텍스트·스타일 힌트를 포함해 LLM을 호출해 답변을 생성한다. |
+| 🔒 토큰 검증 | 답변의 코드 블록만 추출해 화이트리스트에 없는 모듈/심볼 사용 여부를 검사한다. |
+| ♻️ 재시도 | 위반 항목이 있으면 “금지 목록을 절대 사용하지 말라” 제약을 추가해 한 번 더 재생성한다. |
+| ✅ 종료/표시 | 최종 답변을 출력하고, 거절 응답이 아니면 근거 스니펫(강의일/라인)을 함께 노출한다. |
+---
+## 3.11 🔌 단계별 입·출력
+| 단계 | 설명 요약 |
+| --- | --- |
+| 🧹 전처리 입력/출력 | 입력: 원문 질의 → 출력: 정규화 질의.  |
+| 🔎 벡터 검색 입력/출력 | 입력: 정규화 질의 → 출력: 문서 조각 리스트(docs). |
+| ✅ 토큰 로드 입력/출력 | 입력: 인덱스 경로 → 출력: allowed={modules, symbols}. |
+| 🧩 컨텍스트 구성 입력/출력 | 입력: docs → 출력: 컨텍스트 문자열(context).  |
+| 🧠 답변 생성 입력/출력 | 입력: query, context, allowed, 프롬프트 → 출력: answer(text/markdown).  |
+| 🔒 토큰 검증 입력/출력 | 입력: answer, allowed → 출력: unknown_tokens 리스트. |
+| ♻️ 재시도 입력/출력 | 입력: query+금지목록, context, 프롬프트 → 출력: 교정된 answer. |
+---
+## 3.12 프롬프트
+### System Prompt
+```
+ system_prompt: str = (
+        "당신은 수업용 코치입니다.\n"
+        "제공된 컨텍스트(강의록 조각들)에서 근거를 찾아 답변하십시오.\n"
+        "컨텍스트에 관련 내용이 있으면 그것을 기반으로 설명하고 코드를 제공하세요.\n"
+        "컨텍스트에 없는 라이브러리나 함수는 사용하지 마세요.\n"
+        "질문이 프로그래밍과 전혀 무관하거나(예: 요리, 여행, 운동 등) 컨텍스트와 완전히 무관한 경우에만 '죄송합니다. 해당 내용은 강의록에서 다루지 않은 주제입니다.'라고 거절하세요.\n"
+        "프로그래밍 관련 질문이라면 컨텍스트에서 유사한 내용을 찾아 최대한 도움을 주려고 노력하세요.\n"
+        "가능하면 강의록의 변수명/함수명/스타일을 모방하세요.\n"
+    )
+```
+---
+### Answer Prompt 
+```
+answer_guide: str = (
+        "출력 형식:\n"
+        "1) 간단한 설명\n"
+        "2) 코드(필요 시)\n"
+        "3) 사용한 근거 스니펫들(강의일 기준으로 표시)\n"
+        "주의: 코드 블록은 반드시 ```python 으로 시작하세요."
+    )
+```
+### 프롬프트 의도
+- **역할**: 본 프롬프트는 “수업용 코치 + 코딩 어시스턴트”로서, 강의록에서 추출한 스니펫을 근거로만 답하도록 설계되었다.
+
+- **근거 원칙**: 외부 지식이나 강의록에 없는 라이브러리/함수 사용을 금지해 일관성과 재현성을 보장한다.
+
+- **실패 처리**: 컨텍스트에 근거가 없을 때는 정중히 거절하고, 인접 주제/검색어 제안을 통해 탐색을 유도한다.
+
+- **스타일**: 한국어로 간결·정확하게 답하며, 가능하면 강의록의 변수명·함수명·코딩 스타일을 모방한다.
+
+- **출력 포맷**: “간단한 설명 → 코드(있을 때) → 근거 스니펫(강의일/라인)” 순서를 엄수하고, 코드블록은 반드시 ```python 으로 시작한다.
+
+- **화이트리스트**: 허용되지 않은 모듈/심볼은 사용하지 않으며, 필요한 경우 대체 표준 라이브러리를 설명 수준에서만 제안한다.
+
+- **품질 관리**: 유사·중복 스니펫은 통합하고 Top-K 내에서 핵심만 사용하여 장황한 인용을 피한다.
+---
+## 3.13 데이터 전처리
+1️⃣ 입력: 파일 읽기
+```python
+def process_file(self, file_path: Path) -> List[Document]:
+    """
+    파일을 읽어서 Document 청크로 변환
+    """
+    text = read_text(file_path)  # <- 여기서 전체 텍스트 읽음
+    return self.chunk_documents(text, source=str(file_path))
+```
+- read_text(file_path) → utils.py의 함수
+
+- 전체 텍스트를 불러와서 chunk_documents로 전달
+
+2️⃣ 날짜 기반 청크 분할
+```python
+def chunk_documents(self, text: str, source: str) -> List[Document]:
+    """
+    텍스트를 날짜 기반으로 청킹 (YYYY.MM.DD 패턴)
+    """
+    date_pattern = r'^(\d{4}\.\d{2}\.\d{2})\s*'  # <- 날짜 패턴 정의
+    lines = text.splitlines()
+    docs: List[Document] = []
+    current_chunk_lines = []
+    current_date = None
+    current_start_line = 1
+    chunk_idx = 0
+
+    for line_idx, line in enumerate(lines, 1):
+        date_match = re.match(date_pattern, line.strip())
+        
+        if date_match:
+            if current_chunk_lines and current_date:
+                # 이전 청크 저장
+                chunk_content = '\n'.join(current_chunk_lines)
+                if chunk_content.strip():
+                    docs.append(self._create_date_chunk_document(
+                        chunk_content, source, current_date, current_start_line, 
+                        line_idx - 1, chunk_idx
+                    ))
+                    chunk_idx += 1
+            
+            # 새 청크 시작
+            current_date = date_match.group(1)
+            current_start_line = line_idx
+            current_chunk_lines = [line]
+        else:
+            current_chunk_lines.append(line)
+    
+    # 마지막 청크 처리
+    if current_chunk_lines and current_date:
+        chunk_content = '\n'.join(current_chunk_lines)
+        if chunk_content.strip():
+            docs.append(self._create_date_chunk_document(
+                chunk_content, source, current_date, current_start_line, 
+                len(lines), chunk_idx
+            ))
+    
+    return docs
 ```
 
-### 🔄 RAG 처리 플로우
+- 핵심: 날짜가 나오면 새 청크 시작, 이전 청크는 _create_date_chunk_document로 Document 생성
 
-```mermaid
-graph TD
-    A[사용자 질문] --> B[Frontend<br/>Streamlit App]
-    B --> C[API Request<br/>POST /api/chat/]
-    C --> D[Backend<br/>Django REST API]
-    D --> E[Document Processing<br/>Vector Search]
-    E --> F[Context Building<br/>Token Validation]
-    F --> G[LLM Generation<br/>OpenAI GPT-4]
-    G --> H[Response Processing<br/>Unknown Token Check]
-    H --> I[Database Storage<br/>Chat History]
-    I --> J[API Response<br/>JSON Format]
-    J --> K[Frontend Display<br/>Chat Interface]
+- 줄 단위 순회하면서 문맥 유지
 
-    style A fill:#e1f5fe
-    style D fill:#f3e5f5
-    style G fill:#fff3e0
-    style I fill:#e8f5e8
+3️⃣ Document 객체 생성
+```python
+def _create_date_chunk_document(
+    self, content: str, source: str, date: str, 
+    start_line: int, end_line: int, chunk_idx: int
+) -> Document:
+    """날짜 기반 청크용 Document 생성"""
+    lines = content.splitlines()
+    first_line = lines[0] if lines else ""
+    last_line = lines[-1] if lines else ""
+    
+    # 첫 줄에서 날짜 제거 후 미리보기
+    first_line_preview = re.sub(r'^\d{4}\.\d{2}\.\d{2}\s*', '', first_line)
+    first_line_preview = first_line_preview[:50] + "..." if len(first_line_preview) > 50 else first_line_preview
+    
+    return Document(
+        page_content=content,
+        metadata={
+            "source": source,
+            "kind": "lecture_date",
+            "date": date,
+            "chunk_id": f"{source}:date_{chunk_idx}",
+            "start_line": start_line,
+            "end_line": end_line,
+            "line_count": len(lines),
+            "first_line_preview": first_line_preview,
+            "last_line_preview": last_line[:50] + "..." if len(last_line) > 50 else last_line
+        }
+    )
 ```
 
-## 3.9 📁 프로젝트 구조
+- 날짜 기반 청크를 Document 객체로 변환
 
+- 메타데이터 포함 → RAG에서 근거 스니펫 표시 가능
+
+
+---
+## 3.14 환경설정
+### 1️⃣ 패키지 설치
 ```
-skn15-3rd-1team/
-├── 🗄️ backend/                    # Django REST API 서버
-│   ├── backend/
-│   │   ├── __init__.py
-│   │   ├── settings.py            # Django 설정 (DB, CORS, RAG 설정)
-│   │   ├── urls.py                # URL 라우팅
-│   │   └── wsgi.py                # WSGI 설정
-│   ├── rag_api/                   # RAG API 앱
-│   │   ├── models.py              # 데이터 모델 (Document, ChatSession, ChatMessage)
-│   │   ├── views.py               # API 뷰 (인덱싱, 채팅, 검색)
-│   │   ├── serializers.py         # 데이터 직렬화
-│   │   ├── urls.py                # API 엔드포인트
-│   │   └── apps.py
-│   ├── manage.py                  # Django 관리 명령어
-│   └── requirements.txt           # Python 패키지 의존성
-│
-├── 🖥️ frontend/                   # Streamlit 웹 애플리케이션
-│   ├── app.py                     # 메인 Streamlit 앱
-│   ├── api_client.py              # Backend API 클라이언트
-│   └── requirements.txt           # Python 패키지 의존성
-│
-├── 🗃️ database/                   # PostgreSQL 설정
-│   └── init.sql                   # 데이터베이스 초기화 스크립트
-│
-├── 🧠 lecture_rag/                # RAG 핵심 로직 (3차에서 재사용)
-│   ├── config.py                  # 설정 관리
-│   ├── vector_store.py            # 벡터 스토어 (FAISS)
-│   ├── llm_handler.py             # LLM 처리기
-│   └── document_processor.py      # 문서 처리기
-│
-├── 🐳 Docker 설정
-│   ├── Dockerfile.backend         # Backend 컨테이너
-│   ├── Dockerfile.frontend        # Frontend 컨테이너
-│   ├── Dockerfile.database        # Database 컨테이너
-│   └── docker-compose.yml         # 멀티 컨테이너 오케스트레이션
-│
-├── 🚀 배포 설정
-│   ├── deploy.sh                  # 배포 스크립트
-│   ├── .env.example               # 환경변수 템플릿
-│   └── README-AWS.md              # AWS 배포 가이드
-│
-└── 📊 기타
-    ├── langgraph_flow.py          # LangGraph 플로우
-    ├── rag_flow_mermaid.md        # RAG 플로우 다이어그램
-    └── requirements.txt           # 루트 의존성
-```
-
-## 3.10 🔧 기술 스택
-
-
-
-## 3.11 🚀 실행 방법
-
-### 1. 환경 설정
-
-```bash
-# 1. 저장소 클론
-git clone <repository-url>
-cd skn15-3rd-1team
-
-# 2. 환경 변수 설정
-cp .env.example .env
-# .env 파일을 편집하여 필요한 값들 설정
-```
-
-### 2. Docker Compose 실행
-
-```bash
-# 전체 시스템 시작 (Database + Backend + Frontend)
-docker-compose up -d
-
-# 로그 확인
-docker-compose logs -f
-
-# 개별 서비스 로그 확인
-docker-compose logs -f backend
-docker-compose logs -f frontend
-docker-compose logs -f database
-```
-
-### 3. 개발 환경 실행 (로컬)
-
-```bash
-# Backend 실행
-cd backend
 pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
-
-# Frontend 실행 (새 터미널)
-cd frontend
-pip install -r requirements.txt
-streamlit run app.py
 ```
-
-## 3.12 🌐 서비스 엔드포인트
-
-| 서비스 | URL | 설명 |
-|--------|-----|------|
-| Frontend | http://localhost:8501 | Streamlit 웹 인터페이스 |
-| Backend API | http://localhost:8000 | Django REST API |
-| Database | localhost:5432 | PostgreSQL DB |
-
-### 📡 API 엔드포인트
-
-| Method | Endpoint | 설명 |
-|--------|----------|------|
-| `POST` | `/api/index/` | 문서 인덱싱 |
-| `POST` | `/api/chat/` | 질의응답 채팅 |
-| `POST` | `/api/search/` | 문서 검색 |
-| `GET` | `/api/health/` | 헬스체크 |
-| `GET` | `/api/sessions/` | 채팅 세션 목록 |
-| `GET` | `/api/sessions/{id}/messages/` | 세션 메시지 히스토리 |
-
-## 3.13 📊 데이터베이스 스키마
-
-```sql
--- 문서 테이블
-Document {
-    id: INTEGER (PK)
-    title: VARCHAR(255)
-    file_path: TEXT
-    content: TEXT
-    indexed_at: TIMESTAMP
-    created_at: TIMESTAMP
-}
-
--- 채팅 세션 테이블
-ChatSession {
-    id: INTEGER (PK)
-    session_id: UUID (UNIQUE)
-    created_at: TIMESTAMP
-    last_activity: TIMESTAMP
-}
-
--- 채팅 메시지 테이블
-ChatMessage {
-    id: INTEGER (PK)
-    session: ForeignKey(ChatSession)
-    role: VARCHAR(20) -- 'user' or 'assistant'
-    content: TEXT
-    summary: TEXT
-    query: TEXT
-    docs_used: JSON
-    unknown_tokens: JSON
-    created_at: TIMESTAMP
-}
+### 2️⃣ 환경 변수 (.env) 설정
 ```
+# Google Drive API (선택)
+GOOGLE_CLIENT_ID=your_key
+GOOGLE_CLIENT_SECRET=your_key
 
-## 3.14 ⚙️ 환경 변수 설정
+# OpenAI (필수: OpenAI 모델 사용 시)
+OPENAI_API_KEY=your_key
 
-```bash
-# Database 설정
-POSTGRES_DB=lecture_rag
-POSTGRES_USER=lecture_user
-POSTGRES_PASSWORD=lecture_password
-DB_HOST=database
-DB_PORT=5432
-
-# Django 설정
-SECRET_KEY=your-secret-key
-DEBUG=False
-ALLOWED_HOSTS=localhost,127.0.0.1,your-domain.com
-
-# OpenAI API
-OPENAI_API_KEY=your-openai-api-key
-
-# RAG 설정
+# 선택: 기본 모델/온도 덮어쓰기
 LECTURE_RAG_MODEL=gpt-4o-mini
 LECTURE_RAG_TEMPERATURE=0.2
-LECTURE_RAG_DEFAULT_TOP_K=5
-LECTURE_RAG_MAX_TOP_K=10
-LECTURE_RAG_MIN_TOP_K=1
-
-# 포트 설정
-BACKEND_PORT=8000
-FRONTEND_PORT=8501
-DATABASE_PORT=5432
-
-# 저장소 경로
-VECTOR_STORE_DIR=/app/data
+```
+### 3️⃣ 서비스 실행
+```
+python -m streamlit run lecture_rag/app.py
+```
+### 4️⃣ 강의록 등 .txt 파일 다운로드 (Google api key 없을 시 수동으로 다운로드) 
+```
+# 파일 다운로드 후, streamlit 웹에 동적으로 업로드 후 이용가능
 ```
 
-## 3.15 🔄 주요 기능
+## 3.15 임베딩 선정 이유
+<img width="865" height="726" alt="image" src="https://github.com/user-attachments/assets/5f1cda08-24b0-4297-a1b8-c518d72f6dcf" />
 
-### 1. 📄 문서 인덱싱
-- **기능**: 텍스트 파일을 업로드하여 벡터 스토어에 인덱싱
-- **지원 형식**: .txt, .md, .py 등
-- **처리 과정**:
-  1. 파일 업로드 → 2. 청킹 → 3. 임베딩 생성 → 4. FAISS 저장
+---
+# 4. 기술스택
 
-### 2. 💬 실시간 채팅
-- **기능**: 인덱싱된 문서 기반 질의응답
-- **특징**:
-  - 세션 기반 대화 관리
-  - 요약 답변과 상세 답변 제공
-  - 근거 스니펫 표시
-  - 토큰 유효성 검증
 
-### 3. 🔍 문서 검색
-- **기능**: 키워드 기반 문서 검색
-- **설정**: Top-K 문서 수 조절 가능
+| Field	| Tool |
+|----|---|
+| Frontend	| <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white"> |
+| LLM	| <img src="https://img.shields.io/badge/OpenAI%20GPT-412991?style=for-the-badge&logo=openai&logoColor=white"> <img src="https://img.shields.io/badge/langchain--openai-0B3B5B?style=for-the-badge&logo=openai&logoColor=white"> |
+| Vector DB	| <img src="https://img.shields.io/badge/FAISS-20232A?style=for-the-badge&logo=facebook&logoColor=white"> |
+| Embedding	| <img src="https://img.shields.io/badge/HuggingFace%20all--MiniLM--L6--v2-FFAE00?style=for-the-badge&logo=huggingface&logoColor=white"> |
+| Framework	| <img src="https://img.shields.io/badge/LangChain-0B3B5B?style=for-the-badge&logo=chainlink&logoColor=white"> |
+| Language	| <img src="https://img.shields.io/badge/Python%203.8%2B-3776AB?style=for-the-badge&logo=Python&logoColor=white">| 
 
-### 4. 📈 채팅 히스토리
-- **기능**: 모든 대화 내역 저장 및 조회
-- **저장 정보**: 질문, 답변, 요약, 사용된 문서, 미허용 토큰
+---
+# 5. 수행결과
+## 🎥 시연 화면 (예시)
 
-## 🛠️ 개발 가이드
+<img width="1000" height="400" alt="image" src="https://github.com/user-attachments/assets/0fd41515-b341-40e1-8f5b-6a7e342a348b" />
 
-### Backend API 확장
-
-```python
-# backend/rag_api/views.py
-class CustomAPIView(APIView):
-    def post(self, request):
-        # 새로운 API 엔드포인트 구현
-        pass
-
-# backend/rag_api/urls.py
-urlpatterns = [
-    path('custom/', CustomAPIView.as_view(), name='custom-api'),
-]
-```
-
-### Frontend 컴포넌트 추가
-
-```python
-# frontend/app.py
-def _render_new_feature(self):
-    """새로운 기능 렌더링"""
-    st.subheader("새 기능")
-    # Streamlit 컴포넌트 구현
-```
-
-## 3.16 🔧 트러블슈팅
-
-### 일반적인 문제들
-
-#### 1. Database 연결 오류
-```bash
-# 컨테이너 상태 확인
-docker-compose ps
-
-# Database 로그 확인
-docker-compose logs database
-
-# Database 재시작
-docker-compose restart database
-```
-
-#### 2. Backend API 오류
-```bash
-# Backend 로그 확인
-docker-compose logs backend
-
-# Django 마이그레이션 실행
-docker-compose exec backend python manage.py migrate
-
-# 슈퍼유저 생성
-docker-compose exec backend python manage.py createsuperuser
-```
-
-#### 3. Frontend 연결 문제
-```bash
-# API 연결 상태 확인
-curl http://localhost:8000/api/health/
-
-# Frontend 재시작
-docker-compose restart frontend
-```
-
-#### 4. 벡터 스토어 문제
-```bash
-# 벡터 스토어 디렉토리 권한 확인
-docker-compose exec backend ls -la /app/data
-
-# 볼륨 재생성
-docker-compose down -v
-docker-compose up -d
-```
-
-## 3.17 📋 배포 체크리스트
-
-- [ ] 환경 변수 설정 완료
-- [ ] OpenAI API 키 설정
-- [ ] Database 마이그레이션 완료
-- [ ] Docker 컨테이너 정상 실행
-- [ ] API 헬스체크 통과
-- [ ] Frontend-Backend 통신 확인
-- [ ] 문서 인덱싱 테스트
-- [ ] 질의응답 테스트
 
 ---
 
+### 🏠 5.0 홈 화면(Overview)
 
-# 4. 기술 스택
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/60f44115-c70d-4ebf-b8a6-3390a60f5c0e" />
+<br>
 
-| 분야 (Category) | 기술 스택 (Technology) | 세부 내용 (Details) |
-| :--- | :--- | :--- |
-| **Backend** | ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white) <br/> ![Django REST Framework](https://img.shields.io/badge/Django_REST_Framework-A30000?style=for-the-badge&logo=django&logoColor=white) | Django 4.2+ 버전 및 DRF를 사용한 프레임워크 구성 |
-| | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white) | Docker 컨테이너 기반 데이터베이스 |
-| | ![Gunicorn](https://img.shields.io/badge/Gunicorn-499848?style=for-the-badge&logo=gunicorn&logoColor=white) | Production 환경용 웹 서버 |
-| **Frontend** | ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white) <br/> ![Python](https://img.shields.io/badge/Requests-2F855A?style=for-the-badge&logo=python&logoColor=white) | Streamlit 1.28+ 기반 프레임워크 및 `requests` 라이브러리 |
-| | ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) | 반응형 디자인을 위한 Custom CSS 스타일링 |
-| **AI/ML** | ![Facebook](https://img.shields.io/badge/FAISS-4A90E2?style=for-the-badge&logo=facebook&logoColor=white) <br/> ![Python](https://img.shields.io/badge/Sentence_Transformers-3776AB?style=for-the-badge&logo=python&logoColor=white) | FAISS 벡터 저장소 및 임베딩 모델 |
-| | ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white) <br/> ![LangChain](https://img.shields.io/badge/LangChain-019934?style=for-the-badge&logo=langchain&logoColor=white) | OpenAI GPT-4o-mini 기반 다중 LLM 지원 및 LangChain 활용 |
-| **Infrastructure** | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white) <br/> ![Docker Compose](https://img.shields.io/badge/Docker_Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white) | Docker & Docker Compose를 이용한 컨테이너화 |
-| | ![Amazon AWS](https://img.shields.io/badge/AWS_EC2-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white) | AWS EC2 기반 Docker 컨테이너 배포 |
-# 5. 수행결과
+**설정 패널(좌측)**
+- FAISS 저장 디렉터리: 벡터 인덱스와 허용 토큰 파일이 저장될 로컬 경로를 지정한다(예: `.lecture_index`).  
+- LLM 모델 선택: 기본값은 환경변수(예: `LECTURE_RAG_MODEL`)를 따르며, 드롭다운에서 실행 중에 변경 가능하다.  
+- Temperature 슬라이더: 생성 다양성을 제어한다(낮을수록 보수적, 높을수록 창의적).  
+
+**질문/옵션 영역(중앙)**
+- 질의 입력창: 분석·설명·코드 요청 등 자연어 질문을 입력한다.  
+- Top‑K 문서: 검색에서 가져올 스니펫 개수를 조절하여 컨텍스트의 폭을 설정한다.  
+- 답변 생성 버튼: 현재 설정과 인덱스를 기반으로 컨텍스트를 구성해 LLM 답변을 생성한다.  
+
+**인덱싱(좌측 하단)**
+- 구글 드라이브에서 강의록 가져오기: 드라이브에 업로드된 텍스트/마크다운/코드 파일을 불러와 인덱싱할 수 있다.  
+- 로컬 파일 업로드(대안): 드라이브 사용이 어려울 때 로컬 파일을 직접 선택해 인덱싱을 수행한다.  
+
+**사용 흐름 요약**
+1) 좌측에서 모델·인덱스 경로·온도를 설정한다.  
+2) 인덱싱 섹션에서 강의록을 업로드(또는 드라이브에서 가져오기)하여 벡터 인덱스를 생성한다.  
+3) 중앙 입력창에 질문을 입력하고 Top‑K를 조절한 뒤 “답변 생성”을 누르면, 근거 스니펫을 바탕으로 답변과 코드가 출력된다.  
+
+**안내**
+- OpenAI 계열 모델을 사용할 때는 사전에 API 키(예: `OPENAI_API_KEY`)가 환경에 설정되어 있어야 정상 동작한다.  
+- 프로젝트별 문서로 인덱싱을 분리하려면 저장 디렉터리를 서로 다른 경로로 지정해 독립적인 컨텍스트를 유지할 수 있다.  
+---
+### 📌 5.1 답변 섹션(개요 + RAG 코드 샘플)
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/4f9553b6-979b-4427-bf19-4383ca24c5ee" />
+
+- 상단에 “답변” 제목과 함께 RAG의 개념 요약이 먼저 노출되고, 그 아래에는 기본 RAG 체인을 구성하는 코드 예시가 포함된다.  
+- 이 화면은 사용자가 모델이 어떤 방식으로 답을 생성하는지 이해하도록 돕는 “학습/가이드 영역” 역할을 한다.  
+
+---
+
+### 📌 5.2 근거 스니펫(세부 확인 패널)
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/fea657c8-a0a9-4dc6-9f60-90692c2d184a" />
 
 
+- 검색된 문서 조각들이 Chunk 단위로 나열되며, 각 항목을 펼치면 해당 스니펫의 본문과 라인 범위, 타입(text/code) 같은 메타데이터를 확인할 수 있다.  
+- “원본에서 찾기” 힌트를 제공해 실제 파일의 위치(라인 번호 기준)를 빠르게 탐색하도록 돕는 검증용 UI다. 
+---
+### 📌 5.3 질의/옵션 입력 영역(실행 패널)
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/a6382b77-f3c5-4caf-a2c9-3a5dd8f061d5" />
+
+- 중앙 상단에 질문 입력창과 Top‑K 슬라이더가 배치되어 검색 범위를 조정할 수 있고, 우측 드롭존에는 추가 컨텍스트 파일을 일시 첨부할 수 있다.  
+- 좌측 사이드바에는 인덱스 경로, LLM 모델, Temperature 등의 런타임 설정이 모여 있어 “실행 전 준비/세팅”을 담당한다.  
+---
+### 📌 5.4 최종 답변 + 근거 요약(결과 패널)
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/78c73580-808e-4363-9147-1468486f5414" />
+
+- 생성된 답변이 문단과 코드 블록으로 제시되며, 하단에는 “사용한 근거 스니펫들” 목록이 요약되어 근거 기반 응답임을 명확히 한다.  
+- 이 화면은 사용자가 즉시 실행 가능한 코드와 함께, 어떤 스니펫이 답변을 뒷받침했는지를 한 눈에 확인하는 “결과/검증” 단계다.  
+---
+### 📌 5.5 답변 방식 비교
+### 1) 기술 개념 질문 화면: “rag가 뭐야?”
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/63067634-177f-4e40-8643-2c134c147fcf" />
+
+- 목적: 강의 컨텍스트에 존재하는 개념(RAG)을 질의했을 때의 정상 동작 예시를 보여준다.  
+- 특징:
+  - 상단 입력창과 Top‑K 조절 슬라이더로 검색 폭을 설정하고, 우측 드롭존에 추가 컨텍스트를 첨부할 수 있다.  
+  - 하단 “답변” 섹션에서 RAG 정의와 동작 원리를 서술하고, 이어서 RAG 체인을 구성하는 코드 예시를 제공한다.  
+  - 근거 스니펫 패널로 어떤 강의 일자/라인에서 정보를 인용했는지 검증 가능하다.  
+
+### 2) 비컨텍스트 일반지식 질문 화면: “호날두가 누구야?”
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/f6ee3139-8944-43eb-94a8-b18d8c16befb" />
+
+
+- 목적: 강의록 범위를 벗어난 일반 지식 질문에 대해 시스템이 어떻게 안전하게 응답하는지 보여준다.  
+- 특징:
+  - 출력 포맷은 동일하게 유지하되, 코드 섹션은 “필요 시” 조건에 따라 생략된다.  
+  - “사용한 근거 스니펫들”에 컨텍스트 부재 안내가 포함되어, 강의 자료에 근거가 없음을 명확히 알린다.  
+  - 환각 방지를 위해 외부 지식으로 채우지 않고, 정중한 제한 응답 정책을 따른다.
+ 
+### 📖 답변 방식 요약
+#### ➡️ 첫 화면은 강의 컨텍스트 기반의 “설명+코드+근거” 풀 세트를 보여 주고, 두 번째 화면은 컨텍스트 부재 시 “정중한 제한 응답”으로 전환하는 정책을 시각적으로 확인
+---
 # 6. 한 줄 회고
+
+|**조태민**|**박진우**|**서혜선**|
+|----|---|---|
+| LLM을 활용해서, 데이터의 저장, 청크, 임베딩, 라우터, 래그 등 랭채인을 이용한 파이프라인을 처음부터 끝까지 다뤄볼 수 있었습니다. 의도대로 기능을 구현하고 논리를 설계하면서 흐름을 더 잘 이해할 수 있는 기회를 얻어 좋았습니다. | 문서 기반 질의응답을 목표로 RAG 파이프라인을 설계·구현하면서, 모델을 바꾸는 것보다 청킹 전략과 리트리버/프롬프트 튜닝, 간단한 평가 루프의 반복 개선이 성능에 더 효과적임을 배웠습니다. 팀원들과 코드를 중심으로 논리를 맞추며 전체 흐름을 선명하게 이해할 수 있어 큰 도움이 되었습니다. | 업로드된 문서 기반으로 LLM이 질의응답하는 구조를 구현하며, 코드 중심 접근의 장점을 체감할 수 있었습니다. 이해안됐던 부분들도 이해할 수 있었고 팀원들도 다 열심히 해줘서 좋은 결과로 마무리한 것 같아 좋습니다. 다들 고생하셨습니다. |
+
+
+
+|**임가은**|**임경원**|**홍민식**|
+|----|---|---|
+| LLM에게 내 문서를 전달하여 그를 바탕으로 정보를 얻을 수 있다는 점이 흥미로웠다. gpt처럼 마냥 새로운 것을 주는 게 아니라, 내 문서를 기반으로 대답한다는 점이 좋았고, 다양한 문서 형식을 처리하기 위해 전처리 과정과 청킹 전략이 얼마나 중요한지 깨달았다. LLM 관련으로 좋은 경험이 된 것 같다.  | 이번 프로젝트는 단순히 LLM을 활용하는 기술을 익히는 것을 넘어, 데이터의 흐름을 처음부터 끝까지 직접 설계하고 제어하는 경험이었습니다. 각 단계가 유기적으로 연결되어야만 의도한 대로 기능이 구현되는 것을 보며 시스템 전반의 논리적인 구조를 설계하는 능력을 기를 수 있었습니다. 앞으로 더 복잡하고 정교한 LLM 애플리케이션을 개발하는 데 도움이 되었습니다. |LLM을 통해 데이터 처리와 RAG 파이프라인에 대해서   복잡한 흐름을  배울수 있게 되었습니다 |
+
+
+

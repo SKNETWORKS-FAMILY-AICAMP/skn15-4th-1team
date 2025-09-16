@@ -1,0 +1,22 @@
+Django>=4.2.0
+djangorestframework>=3.14.0
+django-cors-headers>=4.0.0
+psycopg2-binary>=2.9.0
+python-dotenv>=1.0.0
+
+# RAG Dependencies
+streamlit>=1.28.0
+langchain>=0.1.0
+langchain-openai>=0.0.5
+langchain-community>=0.0.10
+langchain-huggingface>=0.0.3
+faiss-cpu>=1.7.4
+sentence-transformers>=2.2.2
+openai>=1.12.0
+
+# Google Drive API (optional)
+google-api-python-client>=2.0.0
+google-auth-oauthlib>=0.8.0
+
+# Deployment
+gunicorn>=21.0.0
