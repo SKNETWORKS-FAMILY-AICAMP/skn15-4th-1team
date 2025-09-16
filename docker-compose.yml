@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  database:
+    build:
+      context: .
+      dockerfile: Dockerfile.database
+    container_name: lecture-rag-database
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-lecture_rag}
+      - POSTGRES_USER=${POSTGRES_USER:-lecture_user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-lecture_password}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "${DATABASE_PORT:-5432}:5432"
+    networks:
+      - lecture-rag-network
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: lecture-rag-backend
+    env_file:
+      - .env
+    volumes:
+      - backend_data:${VECTOR_STORE_DIR:-/app/data}
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    depends_on:
+      - database
+    networks:
+      - lecture-rag-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: lecture-rag-frontend
+    env_file:
+      - .env
+    ports:
+      - "${FRONTEND_PORT:-8501}:8501"
+    depends_on:
+      - backend
+    networks:
+      - lecture-rag-network
+    restart: unless-stopped
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: lecture-rag-nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+    networks:
+      - lecture-rag-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  backend_data:
+
+networks:
+  lecture-rag-network:
+    driver: bridge
