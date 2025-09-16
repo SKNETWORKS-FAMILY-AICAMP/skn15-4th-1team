@@ -1,17 +1,34 @@
 # skn15-4th-1team
-# 1. 팀 소개
+# 1. 팀 소개 
+# 팀명 : 웅이와 아이들
+
+<div align="center">
+
+
+| **조태민** | **박진우** | **서혜선** | **임가은** | **임경원** | **홍민식** |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| <img width="110" height="120" alt="Image" src="https://github.com/user-attachments/assets/f4e37d90-54e7-412f-9eb0-6c94ffd08170" /> | <img width="110" height="120" alt="Image" src="https://github.com/user-attachments/assets/6ec5c5be-b7dc-4b77-84f8-73eae0735138" /> | <img width="110" height="120" alt="Image" src="https://github.com/user-attachments/assets/98f8c5b4-eaf1-44f1-ac6f-c90be49f40fb" /> | <img width="110" height="120" alt="Image" src="https://github.com/user-attachments/assets/48f3f3e0-5118-4c93-b7c1-4302fd0c6803" /> | <img width="110" height="120" alt="Image" src="https://github.com/user-attachments/assets/b5ad3ea4-cdde-4ad8-bde3-8237cdd6cae0" /> | <img width="110" height="120" alt="Image" src="https://github.com/user-attachments/assets/84179981-6f18-4ad5-adab-9a7216a254c5" /> |
+| [@o2mandoo](https://github.com/o2mandoo) | [@pjw876](https://github.com/pjw876) | [@hyeseon](https://github.com/hyeseon7135) | [@mars7421](https://github.com/mars7421) | [@KYUNGWON-99](https://github.com/KYUNGWON-99) | [@minnnsik](https://github.com/minnnsik) |
+
+
+
+</div>
+
+---
 # 2. 프로젝트 기간
+	- 2025.09.15 ~ 2025.09.16 (총 2일)
+---
 # 3. 프로젝트 개요
 
 ⚡ **빠른 시작**: `docker-compose up -d` → http://localhost:8501 접속!
 
 
-## 📕 프로젝트명
+## 3.1 📕 프로젝트명
 # 📚 Lecture-RAG: 4차 프로젝트 (서버 분산 구조)
 
 강의록 기반 질의응답 시스템을 Docker와 Django REST API로 구현한 분산 애플리케이션입니다.
 
-## ✅ 프로젝트 배경 및 목적
+## 3.2 ✅ 프로젝트 배경 및 목적
 
 ### 문제 상황
 - **기존 문제**: 대용량 강의 자료에서 원하는 정보를 찾기 어려움
@@ -26,7 +43,7 @@
 - 근거 자료 제시로 신뢰성 있는 정보 전달
 - 확장 가능한 서버 아키텍처로 다중 사용자 지원
 
-## 🖐️ 프로젝트 소개
+## 3.3 🖐️ 프로젝트 소개
 
 **Lecture-RAG**는 대학 강의록과 교육 자료를 AI가 이해할 수 있는 형태로 변환하여, 학습자가 자연어로 질문하면 관련 내용을 찾아 정확한 답변을 제공하는 지능형 교육 지원 시스템입니다.
 
@@ -44,7 +61,7 @@
 - **실시간 응답**: 최적화된 검색 및 생성 파이프라인
 - **컨테이너화**: Docker 기반 손쉬운 배포 및 확장
 
-## ❤️ 기대효과
+## 3.4 ❤️ 기대효과
 
 ### 🎓 학습자 관점
 - **⏰ 학습 시간 단축**: 필요한 정보를 즉시 찾아 학습 효율성 3배 향상
@@ -64,7 +81,7 @@
 - **🔄 확장성**: 여러 과목, 다수 학생 동시 지원
 - **📱 접근성**: 웹 기반으로 언제 어디서나 접근 가능
 
-## 👤 대상 사용자
+## 3.5 👤 대상 사용자
 
 ### 🎯 1차 대상 (Primary Users)
 | 사용자 그룹 | 사용 목적 | 주요 니즈 |
@@ -97,7 +114,7 @@
 - **니즈**: 학생들이 자주 묻는 질문 패턴 파악 및 자동 응답
 - **사용 패턴**: 질문 통계 확인 → 강의 개선점 도출 → 추가 자료 제공
 
-## 🏗️ 3차 → 4차 프로젝트 주요 변경사항
+## 3.6 🏗️ 3차 → 4차 프로젝트 주요 변경사항
 
 | 항목 | 3차 프로젝트 | 4차 프로젝트 |
 |------|-------------|-------------|
@@ -108,19 +125,16 @@
 | **확장성** | 수직 확장만 가능 | 수평 확장 가능 (각 서비스 독립적) |
 | **데이터 지속성** | 세션 기반 (임시) | 데이터베이스 영구 저장 |
 | **개발/운영** | 개발환경 중심 | Production-ready 구조 |
-## ERD 구성
+## 3.7 ERD 구성
 
 <img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/f2a63960-e52a-4ab3-8a43-d70fcb09faf1" />
 
-## 개념도
 
-<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/f9be3b91-21ca-4f21-ac01-9adbdadd5944" />
 
-# 
 
 강의록 기반 질의응답 시스템을 Docker와 Django REST API로 구현한 분산 애플리케이션입니다.
 
-## 🏗️ 시스템 아키텍처
+## 3.8 🏗️ 시스템 아키텍처
 
 ```
 ┌─────────────────┐    HTTP/REST API    ┌─────────────────┐    SQL    ┌─────────────────┐
@@ -160,7 +174,7 @@ graph TD
     style I fill:#e8f5e8
 ```
 
-## 📁 프로젝트 구조
+## 3.9 📁 프로젝트 구조
 
 ```
 skn15-3rd-1team/
@@ -210,11 +224,11 @@ skn15-3rd-1team/
     └── requirements.txt           # 루트 의존성
 ```
 
-## 🔧 기술 스택
+## 3.10 🔧 기술 스택
 
 
 
-## 🚀 실행 방법
+## 3.11 🚀 실행 방법
 
 ### 1. 환경 설정
 
@@ -258,7 +272,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-## 🌐 서비스 엔드포인트
+## 3.12 🌐 서비스 엔드포인트
 
 | 서비스 | URL | 설명 |
 |--------|-----|------|
@@ -277,7 +291,7 @@ streamlit run app.py
 | `GET` | `/api/sessions/` | 채팅 세션 목록 |
 | `GET` | `/api/sessions/{id}/messages/` | 세션 메시지 히스토리 |
 
-## 📊 데이터베이스 스키마
+## 3.13 📊 데이터베이스 스키마
 
 ```sql
 -- 문서 테이블
@@ -312,7 +326,7 @@ ChatMessage {
 }
 ```
 
-## ⚙️ 환경 변수 설정
+## 3.14 ⚙️ 환경 변수 설정
 
 ```bash
 # Database 설정
@@ -346,7 +360,7 @@ DATABASE_PORT=5432
 VECTOR_STORE_DIR=/app/data
 ```
 
-## 🔄 주요 기능
+## 3.15 🔄 주요 기능
 
 ### 1. 📄 문서 인덱싱
 - **기능**: 텍스트 파일을 업로드하여 벡터 스토어에 인덱싱
@@ -397,7 +411,7 @@ def _render_new_feature(self):
     # Streamlit 컴포넌트 구현
 ```
 
-## 🔧 트러블슈팅
+## 3.16 🔧 트러블슈팅
 
 ### 일반적인 문제들
 
@@ -444,7 +458,7 @@ docker-compose down -v
 docker-compose up -d
 ```
 
-## 📋 배포 체크리스트
+## 3.17 📋 배포 체크리스트
 
 - [ ] 환경 변수 설정 완료
 - [ ] OpenAI API 키 설정
@@ -472,4 +486,6 @@ docker-compose up -d
 | **Infrastructure** | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white) <br/> ![Docker Compose](https://img.shields.io/badge/Docker_Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white) | Docker & Docker Compose를 이용한 컨테이너화 |
 | | ![Amazon AWS](https://img.shields.io/badge/AWS_EC2-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white) | AWS EC2 기반 Docker 컨테이너 배포 |
 # 5. 수행결과
+
+
 # 6. 한 줄 회고
